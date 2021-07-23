@@ -93,7 +93,7 @@ d3.csv("world-happiness-report.csv", function(data) {
       .attr("cx", function (d) { return x(d['Log GDP per capita']); } )
       .attr("cy", function (d) { return y(d['Perceptions of corruption']); } )
       .attr("r", 5)
-//       .style("fill", function (d) { return color(d.Species) } )
+      .style("fill", function (d) { return '#F8766D' } )
 
 })
 
