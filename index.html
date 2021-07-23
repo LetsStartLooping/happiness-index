@@ -100,7 +100,7 @@ d3.csv("world-happiness-report.csv", function(data) {
     .range([ "#F8766D", "#00BA38", "#619CFF"])
 
   // Add dots
-  svg.append('g')
+  var dot = svg.append('g')
     .selectAll("dot")
     .data(data)
     .enter()
@@ -120,14 +120,12 @@ d3.csv("world-happiness-report.csv", function(data) {
       var dataFilter = data.filter(function(d){return d.year==selectedGroup})
 
       // Give these new data to update line
-      line
+      dot
           .datum(dataFilter)
           .transition()
           .duration(1000)
-          .attr("d", d3.line()
-            .x(function(d) { return x(+d['Log GDP per capita']) })
-            .y(function(d) { return y(+d['Perceptions of corruption']) })
-          )
+          .attr("cx", function (d) { return x(+d['Log GDP per capita']); } )
+          .attr("cy", function (d) { return y(+d['Perceptions of corruption']); } )
 //           .attr("stroke", function(d){ return myColor(selectedGroup) })
     }
 
