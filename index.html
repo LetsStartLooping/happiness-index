@@ -100,12 +100,12 @@ d3.csv("world-happiness-report.csv", function(data) {
     .range([ "#F8766D", "#00BA38", "#619CFF"])
 
   // Add dots
-  var dot = svg.append('g')
-    .selectAll("dot")
+  svg.append('g')
+    .selectAll("circle")
     .data(data)
     .enter()
     .datum(data.filter(function(d){return d.year==allGroup[5]}))
-    .append("dot")
+    .append("circle")
       .attr("cx", function (d) { return x(+d['Log GDP per capita']); } )
       .attr("cy", function (d) { return y(+d['Perceptions of corruption']); } )
       .attr("r", 5)
