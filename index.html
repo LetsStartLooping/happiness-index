@@ -87,7 +87,7 @@ d3.csv("world-happiness-report.csv", function(data) {
       .text("Sepal Length");
 
   // Y axis label:
-  svg.append("text")
+  var y_label = svg.append("text")
       .attr("text-anchor", "end")
       .attr("transform", "rotate(-90)")
       .attr("y", -margin.left + 20)
@@ -119,6 +119,9 @@ d3.csv("world-happiness-report.csv", function(data) {
       // Create new data with the selection?
       var dataFilter = data.filter(function(d){return d.year==selectedGroup})
 
+      y_label
+      .text(d.year)
+      
       // Give these new data to update line
       dot
           .datum(dataFilter)
