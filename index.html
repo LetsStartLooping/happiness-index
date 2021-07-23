@@ -7,7 +7,7 @@
 <script src="https://d3js.org/d3.v4.js"></script>
     
 <body>
-<h1>World Happiness Index!</h1>
+<h1>World Happiness Index!!</h1>
 </body>
 
 <!-- Initialize a select button -->
@@ -118,9 +118,9 @@ d3.csv("world-happiness-report.csv", function(data) {
 
       // Create new data with the selection?
       var dataFilter = data.filter(function(d){return d.year==selectedGroup})
-
+      
       y_label
-          .text("Lets See")
+          .text(selectedGroup)
       
       // Give these new data to update line
       dot
