@@ -37,7 +37,7 @@ svg
     .attr("y",0)
     .attr("height", height)
     .attr("width", height)
-    .style("fill", "EBEBEB")
+//     .style("fill", "EBEBEB")
 
 //Read the data
 d3.csv("world-happiness-report.csv", function(data) {
@@ -45,7 +45,7 @@ d3.csv("world-happiness-report.csv", function(data) {
     console.log(data)
   // Add X axis
   var x = d3.scaleLinear()
-    .domain([4*0.95, 8*1.001])
+    .domain([0, 12])
     .range([ 0, width ])
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
