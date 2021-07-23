@@ -13,6 +13,7 @@
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
 
+
 <script>
 
 // set the dimensions and margins of the graph
@@ -30,11 +31,11 @@ var svg = d3.select("#my_dataviz")
           "translate(" + margin.left + "," + margin.top + ")");
 
 //Read the data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/2_TwoNum.csv", function(data) {
+d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/iris.csv", function(data) {
 
   // Add X axis
   var x = d3.scaleLinear()
-    .domain([0, 4000])
+    .domain([4, 8])
     .range([ 0, width ]);
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
@@ -42,10 +43,43 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([0, 500000])
+    .domain([0, 9])
     .range([ height, 0]);
   svg.append("g")
     .call(d3.axisLeft(y));
+
+  // Color scale: give me a specie name, I return a color
+  var color = d3.scaleOrdinal()
+    .domain(["setosa", "versicolor", "virginica" ])
+    .range([ "#440154ff", "#21908dff", "#fde725ff"])
+
+
+  // Highlight the specie that is hovered
+  var highlight = function(d){
+
+    selected_specie = d.Species
+
+    d3.selectAll(".dot")
+      .transition()
+      .duration(200)
+      .style("fill", "lightgrey")
+      .attr("r", 3)
+
+    d3.selectAll("." + selected_specie)
+      .transition()
+      .duration(200)
+      .style("fill", color(selected_specie))
+      .attr("r", 7)
+  }
+
+  // Highlight the specie that is hovered
+  var doNotHighlight = function(){
+    d3.selectAll(".dot")
+      .transition()
+      .duration(200)
+      .style("fill", "lightgrey")
+      .attr("r", 5 )
+  }
 
   // Add dots
   svg.append('g')
@@ -53,12 +87,16 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
     .data(data)
     .enter()
     .append("circle")
-      .attr("cx", function (d) { return x(d.GrLivArea); } )
-      .attr("cy", function (d) { return y(d.SalePrice); } )
-      .attr("r", 1.5)
-      .style("fill", "#69b3a2")
+      .attr("class", function (d) { return "dot " + d.Species } )
+      .attr("cx", function (d) { return x(d.Sepal_Length); } )
+      .attr("cy", function (d) { return y(d.Petal_Length); } )
+      .attr("r", 5)
+      .style("fill", function (d) { return color(d.Species) } )
+    .on("mouseover", highlight)
+    .on("mouseleave", doNotHighlight )
 
 })
 
 </script>
+    
 </html>
