@@ -104,7 +104,7 @@ d3.csv("world-happiness-report.csv", function(data) {
     .selectAll("dot")
     .data(data)
     .enter()
-    .datum(data.filter(function(d){return d.name==allGroup[5]}))
+    .datum(data.filter(function(d){return d.year==allGroup[5]}))
     .append("dot")
       .attr("cx", function (d) { return x(+d['Log GDP per capita']); } )
       .attr("cy", function (d) { return y(+d['Perceptions of corruption']); } )
