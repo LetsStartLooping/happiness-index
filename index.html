@@ -47,7 +47,7 @@ d3.csv("world-happiness-report.csv", function(data) {
 
   // List of Years
     var allGroup = d3.map(data, function(d){return(d['year'])}).keys()
-    
+    console.log(allGroup)
     // add the options to the button
     d3.select("#selectButton")
      .selectAll('myOptions')
