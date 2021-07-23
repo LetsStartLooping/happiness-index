@@ -21,8 +21,8 @@
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 40, left: 50},
-    width = 520 - margin.left - margin.right,
-    height = 520 - margin.top - margin.bottom;
+    width = 720 - margin.left - margin.right,
+    height = 720 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
@@ -34,13 +34,13 @@ var svg = d3.select("#my_dataviz")
           "translate(" + margin.left + "," + margin.top + ")")
 
 // Add the grey background that makes ggplot2 famous
-svg
-  .append("rect")
-    .attr("x",0)
-    .attr("y",0)
-    .attr("height", height)
-    .attr("width", height)
-    .style("fill", "FFFFFF")
+// svg
+//   .append("rect")
+//     .attr("x",0)
+//     .attr("y",0)
+//     .attr("height", height)
+//     .attr("width", height)
+//     .style("fill", "FFFFFF")
 
 //Read the data
 d3.csv("world-happiness-report.csv", function(data) {
@@ -50,12 +50,12 @@ d3.csv("world-happiness-report.csv", function(data) {
     
     // add the options to the button
     d3.select("#selectButton")
-      .selectAll('myOptions')
-     	.data(allGroup)
-      .enter()
-    	.append('option')
-      .text(function (d) { return d; }) // text showed in the menu
-      .attr("value", function (d) { return d; }) // corresponding value returned by the button
+     .selectAll('myOptions')
+     .data(allGroup)
+     .enter()
+     .append('option')
+     .text(function (d) { return d; }) // text showed in the menu
+     .attr("value", function (d) { return d; }) // corresponding value returned by the button
 
     
   // Add X axis
@@ -77,7 +77,7 @@ d3.csv("world-happiness-report.csv", function(data) {
     .select(".domain").remove()
 
   // Customization
-  svg.selectAll(".tick line").attr("stroke", "white")
+  svg.selectAll(".tick line").attr("stroke", "black")
 
   // Add X axis label:
   svg.append("text")
@@ -105,7 +105,7 @@ d3.csv("world-happiness-report.csv", function(data) {
     .data(data)
     .enter()
     .datum(data.filter(function(d){return d.name==allGroup[5]}))
-    .append("circle")
+    .append("dot")
       .attr("cx", function (d) { return x(+d['Log GDP per capita']); } )
       .attr("cy", function (d) { return y(+d['Perceptions of corruption']); } )
       .attr("r", 5)
