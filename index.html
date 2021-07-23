@@ -54,7 +54,7 @@ d3.csv("world-happiness-report.csv", function(data) {
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([-0.001, 9*1.01])
+    .domain([0, 1])
     .range([ height, 0])
     .nice()
   svg.append("g")
