@@ -45,12 +45,14 @@
   //Read the data
   d3.csv("world-happiness-report.csv", function (data) {
 
-    console.log(data)
+    
     
     data.forEach(function(d){ 
       d['Log GDP per capita'] = +d['Log GDP per capita']; 
       d['Perceptions of corruption'] = +d['Perceptions of corruption'];
     });
+    
+    console.log(data)
 
     // List of Years
     var allGroup = d3.map(data, function (d) { return (d['year']) }).keys()
