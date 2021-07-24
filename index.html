@@ -7,7 +7,7 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 
 <body>
-  <h1>World Happiness Index!!!</h1>
+  <h1>World Happiness Index!!!!!</h1>
 </body>
 
 <!-- Initialize a select button -->
@@ -140,8 +140,8 @@
   var mousemove = function(d) {
     Tooltip
       .html("Country: " + d['Country name'])
-      .style("left", (d3.mouse(this)[0]+70) + "px")
-      .style("top", (d3.mouse(this)[1]) + "px")
+      .style("left", (d3.select(this).attr("cx") + "px")
+      .style("top", (d3.select(this).attr("cy") + "px")
   }
   var mouseleave = function(d) {
     Tooltip
