@@ -98,7 +98,7 @@
       .attr("text-anchor", "end")
       .attr("x", width / 2 + margin.left)
       .attr("y", height + margin.top + 20)
-      .text("Sepal Length");
+      .text("Corruption %");
 
     // Y axis label:
     var y_label = svg.append("text")
@@ -106,7 +106,7 @@
       .attr("transform", "rotate(-90)")
       .attr("y", -margin.left + 20)
       .attr("x", -margin.top - height / 2 + 20)
-      .text("Petal Length")
+      .text("GDP per Capita")
 
     // Color scale: give me a specie name, I return a color
     var color = d3.scaleOrdinal()
@@ -138,8 +138,8 @@
       // Create new data with the selection?
 //       var dataFilter = data.filter(function (d) { return d['year'] == +selectedGroup })
 
-      y_label
-        .text(selectedGroup)
+//       y_label
+//         .text(selectedGroup)
 
       // Give these new data to update line
       dot
