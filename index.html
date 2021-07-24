@@ -7,7 +7,7 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 
 <body>
-  <h1>World Happiness Index!</h1>
+  <h1>World Happiness Index!!!</h1>
 </body>
 
 <!-- Initialize a select button -->
@@ -51,6 +51,7 @@
       d['Log GDP per capita'] = +d['Log GDP per capita']; 
       d['Perceptions of corruption'] = +d['Perceptions of corruption'];
       d['year'] = +d['year'];
+      d['Life Ladder'] = +d['Life Ladder'];
     });
     
     console.log(data)
@@ -122,7 +123,10 @@
       .attr("cx", function (d) { return x(d['Perceptions of corruption']); })
       .attr("cy", function (d) { return y(d['Log GDP per capita']); })
       .attr("r", 5)
-      .style("fill", function (d) { return '#F8766D' })
+      .style("fill", function (d) { 
+        if (d['Life Ladder'] < 5) {return color("setosa")}
+        else {return color("versicolor")}
+      })
 
 
 
