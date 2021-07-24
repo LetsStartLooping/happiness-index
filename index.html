@@ -74,8 +74,8 @@
 
     // Add X axis
   var x = d3.scaleLinear()
-//     .domain([0, 1])
-    .domain(d3.extent(data, function(d) { return d['Perceptions of corruption']; }))
+    .domain([0, 1])
+//     .domain(d3.extent(data, function(d) { return d['Perceptions of corruption']; }))
     .range([ 0, width ])
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
@@ -84,8 +84,8 @@
 
   // Add Y axis
   var y = d3.scaleLinear()
-//     .domain([6, 12])
-    .domain(d3.extent(data, function(d) { return d['Log GDP per capita']; }))
+    .domain([5.9, 12])
+//     .domain(d3.extent(data, function(d) { return d['Log GDP per capita']; }))
     .range([ height, 0])
     .nice()
   svg.append("g")
