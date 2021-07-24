@@ -7,7 +7,7 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 
 <body>
-  <h1>World Happiness Index!!!</h1>
+  <h1>World Happiness Index!</h1>
 </body>
 
 <!-- Initialize a select button -->
@@ -111,7 +111,7 @@
     // Color scale: give me a specie name, I return a color
     var color = d3.scaleOrdinal()
       .domain(["very-low", "low", "medium", "high", "very-high"])
-      .range(["#243B81", "#62BCCC", "#F64F39", "#EE9323", "#F2B922"])
+      .range(["#243B81", "#62BCCC", "#F64F39", "#EE9323", "#E7B80A"])
 
     // Add dots
     var dot = svg.append('g')
@@ -124,9 +124,9 @@
       .attr("cy", function (d) { return y(d['Log GDP per capita']); })
       .attr("r", 5)
       .style("fill", function (d) { 
-        if (d['Life Ladder'] < 2.5) {return color("very-low")}
-        else if (d['Life Ladder'] < 4) {return color("low")}
-        else if (d['Life Ladder'] < 5.5) {return color("medium")}
+        if (d['Life Ladder'] < 3) {return color("very-low")}
+        else if (d['Life Ladder'] < 4.5) {return color("low")}
+        else if (d['Life Ladder'] < 6) {return color("medium")}
         else if (d['Life Ladder'] < 7) {return color("high")}
         else {return color("very-high")}
       })
