@@ -122,7 +122,13 @@
       .append("circle")
       .attr("cx", function (d) { return x(d['Perceptions of corruption']); })
       .attr("cy", function (d) { return y(d['Log GDP per capita']); })
-      .attr("r", 5)
+      .attr("r", function (d) { 
+        if (d['Life Ladder'] < 3) {return 2}
+        else if (d['Life Ladder'] < 4.5) {return 3}
+        else if (d['Life Ladder'] < 6) {return 4}
+        else if (d['Life Ladder'] < 7) {return 5}
+        else {return 6}
+      })
       .style("fill", function (d) { 
         if (d['Life Ladder'] < 3) {return color("very-low")}
         else if (d['Life Ladder'] < 4.5) {return color("low")}
