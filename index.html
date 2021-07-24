@@ -7,7 +7,7 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 
 <body>
-  <h1>World Happiness Index!!!!</h1>
+  <h1>World Happiness Index!!</h1>
 </body>
 
 <!-- Initialize a select button -->
@@ -59,7 +59,7 @@
     var allGroup = d3.map(data, function (d) { return (+d['year']) }).keys()
     
    
-    console.log(+allGroup)
+    console.log(+allGroup[0])
     
     // add the options to the button
     d3.select("#selectButton")
