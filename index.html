@@ -7,7 +7,7 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 
 <body>
-  <h1>World Happiness Index!!!!</h1>
+  <h1>World Happiness Index!</h1>
 </body>
 
 <!-- Initialize a select button -->
@@ -117,7 +117,7 @@
       .selectAll("dot")
       .data(data)
       .enter()
-      .filter(function (d) { return d['year'] == +allGroup[0] })
+      .filter(function (d) { return d['year'] == +allGroup[1] })
       .append("circle")
       .attr("cx", function (d) { return x(d['Log GDP per capita']); })
       .attr("cy", function (d) { return y(d['Perceptions of corruption']); })
@@ -139,7 +139,7 @@
 
       // Give these new data to update line
       dot
-        .datum(dataFilter)
+        .dataFilter
         .transition()
         .duration(1000)
         .attr("cx", function (d) { return x(d['Log GDP per capita']); })
