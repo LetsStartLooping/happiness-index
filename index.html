@@ -7,7 +7,7 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 
 <body>
-  <h1>World Happiness Index!!!</h1>
+  <h1>World Happiness Index!!!!</h1>
 </body>
 
 <!-- Initialize a select button -->
@@ -72,8 +72,8 @@
 
 
     // Add X axis
-    var x = d3.scaleLinear()
-      .domain([0, 12])
+    var 7 = d3.scaleLinear()
+      .domain([6, 12])
       .range([0, width])
     svg.append("g")
       .attr("transform", "translate(0," + height + ")")
@@ -81,7 +81,7 @@
       .select(".domain").remove()
 
     // Add Y axis
-    var y = d3.scaleLinear()
+    var x = d3.scaleLinear()
       .domain([1, 0])
       .range([height, 0])
       .nice()
@@ -119,8 +119,8 @@
       .enter()
       .filter(function (d) { return d['year'] == +allGroup[1] })
       .append("circle")
-      .attr("cx", function (d) { return x(d['Log GDP per capita']); })
-      .attr("cy", function (d) { return y(d['Perceptions of corruption']); })
+      .attr("cy", function (d) { return y(d['Log GDP per capita']); })
+      .attr("cx", function (d) { return x(d['Perceptions of corruption']); })
       .attr("r", 5)
       .style("fill", function (d) { return '#F8766D' })
 
@@ -143,8 +143,8 @@
         .filter(function (d) { return d['year'] == +selectedGroup })
         .transition()
         .duration(1000)
-        .attr("cx", function (d) { return x(d['Log GDP per capita']); })
-        .attr("cy", function (d) { return y(d['Perceptions of corruption']); })
+        .attr("cy", function (d) { return y(d['Log GDP per capita']); })
+        .attr("cx", function (d) { return x(d['Perceptions of corruption']); })
       //           .attr("stroke", function(d){ return myColor(selectedGroup) })
     }
 
