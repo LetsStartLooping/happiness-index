@@ -110,8 +110,8 @@
 
     // Color scale: give me a specie name, I return a color
     var color = d3.scaleOrdinal()
-      .domain(["setosa", "versicolor", "virginica"])
-      .range(["#F8766D", "#00BA38", "#619CFF"])
+      .domain(["very-low", "low", "medium", "high", "very-high"])
+      .range(["#243B81", "#62BCCC", "#F64F39", "#EE9323", "#F2B922"])
 
     // Add dots
     var dot = svg.append('g')
@@ -124,8 +124,11 @@
       .attr("cy", function (d) { return y(d['Log GDP per capita']); })
       .attr("r", 5)
       .style("fill", function (d) { 
-        if (d['Life Ladder'] < 5) {return color("setosa")}
-        else {return color("versicolor")}
+        if (d['Life Ladder'] < 2.5) {return color("very-low")}
+        else if (d['Life Ladder'] < 4) {return color("low")}
+        else if (d['Life Ladder'] < 5.5) {return color("medium")}
+        else if (d['Life Ladder'] < 7) {return color("high")}
+        else {return color("very-high")}
       })
 
 
