@@ -111,7 +111,7 @@
     // Color scale: give me a specie name, I return a color
     var color = d3.scaleOrdinal()
       .domain(["very-low", "low", "medium", "high", "very-high"])
-      .range(["#243B81", "#62BCCC", "#F64F39", "#EE9323", "#E7B80A"])
+      .range(["#243B81", "#62BCCC", "#F64F39", "#EE9323", "#FFFF00"])
 
     // Add dots
     var dot = svg.append('g')
@@ -136,6 +136,7 @@
         else if (d['Life Ladder'] < 7) {return color("high")}
         else {return color("very-high")}
       })
+      .style("stroke", "gray")
 
 
 
