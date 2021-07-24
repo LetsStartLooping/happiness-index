@@ -7,7 +7,7 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 
 <body>
-  <h1>World Happiness Index!!!!</h1>
+  <h1>World Happiness Index!!!</h1>
 </body>
 
 <!-- Initialize a select button -->
@@ -129,8 +129,8 @@
     // A function that update the chart
     function update(selectedGroup) {
 
-      
-      console.log(typeOf(selectedGroup))
+      console.log(+selectedGroup)
+      console.log(data['year'])
       // Create new data with the selection?
       var dataFilter = data.filter(function (d) { return d['year'] == +selectedGroup })
 
