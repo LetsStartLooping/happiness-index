@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 
+<!--
+// Log GDP per capita
+// Social support
+// Healthy life expectancy at birth
+// Freedom to make life choices
+// Generosity
+// Perceptions of corruption
+// Positive affect
+// Negative affect
+-->
+
 <html>
 <meta charset="utf-8">
 
@@ -60,8 +71,11 @@
     // List of Years
     var allGroup = d3.map(data, function (d) { return (+d['year']) }).keys()
     
-    var x_data = 'Perceptions of corruption';
-    var y_data = 'Log GDP per capita';
+    var x_data = 'Positive affect';
+    var y_data = 'Negative affect';
+    
+//     var x_data = 'Perceptions of corruption';
+//     var y_data = 'Log GDP per capita';
    
     console.log(+allGroup[0])
     
@@ -77,8 +91,8 @@
 
     // Add X axis
   var x = d3.scaleLinear()
-    .domain([0, 1])
-//     .domain(d3.extent(data, function(d) { return d['Perceptions of corruption']; }))
+//     .domain([0, 1])
+    .domain(d3.extent(data, function(d) { return d[x_data]; }))
     .range([ 0, width ])
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
@@ -87,8 +101,8 @@
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([5.9, 12])
-//     .domain(d3.extent(data, function(d) { return d['Log GDP per capita']; }))
+//     .domain([5.9, 12])
+    .domain(d3.extent(data, function(d) { return d[y_data]; }))
     .range([ height, 0])
     .nice()
   svg.append("g")
@@ -103,7 +117,7 @@
       .attr("text-anchor", "end")
       .attr("x", width / 2 + margin.left)
       .attr("y", height + margin.top + 20)
-      .text("Corruption %");
+      .text(x_data);
 
     // Y axis label:
     var y_label = svg.append("text")
@@ -111,7 +125,7 @@
       .attr("transform", "rotate(-90)")
       .attr("y", -margin.left + 20)
       .attr("x", -margin.top - height / 2 + 20)
-      .text("GDP per Capita")
+      .text(y_data)
 
     // Color scale: give me a specie name, I return a color
     var color = d3.scaleOrdinal()
