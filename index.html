@@ -29,7 +29,7 @@
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
 
-<button type="button">Click Me!</button>
+<button type="button" onclick="changeXAxis('Generosity')">Generosity!</button>
 
 <script>
 
@@ -115,7 +115,7 @@
     //   svg.selectAll(".tick line").attr("stroke", "black")
 
     // Add X axis label:
-    svg.append("text")
+    var x_label = svg.append("text")
       .attr("text-anchor", "end")
       .attr("x", width / 2 + margin.left)
       .attr("y", height + margin.top + 20)
@@ -235,6 +235,22 @@
 
 
   })
+  
+  var changeXAxis = function(new_x_data) {
+    // Give these new data to update line
+      dot
+        .data(data)
+        .filter(function (d) { return d['year'] == +selectedGroup })
+        .transition()
+        .duration(1000)
+        .attr("cx", function (d) { return x(d[new_x_data]); })
+        .attr("cy", function (d) { return y(d[y_data]); })
+    
+    x_label
+      .text(new_x_data);
+    
+  }
+  
 
 </script>
 
