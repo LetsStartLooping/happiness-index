@@ -7,7 +7,7 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 
 <body>
-  <h1>World Happiness Index!</h1>
+  <h1>World Happiness Index!!!</h1>
 </body>
 
 <!-- Initialize a select button -->
@@ -79,7 +79,7 @@
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(x).ticks(10))
-    .select(".domain").remove()
+//     .select(".domain").remove()
 
   // Add Y axis
   var y = d3.scaleLinear()
@@ -88,7 +88,7 @@
     .nice()
   svg.append("g")
     .call(d3.axisLeft(y).ticks(7))
-    .select(".domain").remove()
+//     .select(".domain").remove()
 
     // Customization
     //   svg.selectAll(".tick line").attr("stroke", "black")
