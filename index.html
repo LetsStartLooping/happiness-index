@@ -59,6 +59,8 @@
     // List of Years
     var allGroup = d3.map(data, function (d) { return (+d['year']) }).keys()
     
+    var x_data = 'Perceptions of corruption';
+    var y_data = 'Log GDP per capita';
    
     console.log(+allGroup[0])
     
@@ -159,14 +161,14 @@
       .enter()
       .filter(function (d) { return d['year'] == +allGroup[1] })
       .append("circle")
-      .attr("cx", function (d) { return x(d['Perceptions of corruption']); })
-      .attr("cy", function (d) { return y(d['Log GDP per capita']); })
+      .attr("cx", function (d) { return x(d[x_data]); })
+      .attr("cy", function (d) { return y(d[y_data]); })
       .attr("r", function (d) { 
         if (d['Life Ladder'] < 3) {return 3}
-        else if (d['Life Ladder'] < 4.5) {return 4}
-        else if (d['Life Ladder'] < 6) {return 5}
-        else if (d['Life Ladder'] < 7) {return 6}
-        else {return 7}
+        else if (d['Life Ladder'] < 4.5) {return 4.5}
+        else if (d['Life Ladder'] < 6) {return 6}
+        else if (d['Life Ladder'] < 7) {return 7.5}
+        else {return 9}
       })
       .style("fill", function (d) { 
         if (d['Life Ladder'] < 3) {return color("very-low")}
@@ -196,8 +198,8 @@
         .filter(function (d) { return d['year'] == +selectedGroup })
         .transition()
         .duration(1000)
-        .attr("cx", function (d) { return x(d['Perceptions of corruption']); })
-        .attr("cy", function (d) { return y(d['Log GDP per capita']); })
+        .attr("cx", function (d) { return x(d[x_data]); })
+        .attr("cy", function (d) { return y(d[y_data]); })
         
       //           .attr("stroke", function(d){ return myColor(selectedGroup) })
     }
