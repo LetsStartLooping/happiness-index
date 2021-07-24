@@ -7,7 +7,7 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 
 <body>
-  <h1>World Happiness Index!</h1>
+  <h1>World Happiness Index!!!</h1>
 </body>
 
 <!-- Initialize a select button -->
@@ -132,14 +132,15 @@
       console.log(+selectedGroup)
       console.log(data['year'])
       // Create new data with the selection?
-      var dataFilter = data.filter(function (d) { return d['year'] == +selectedGroup })
+//       var dataFilter = data.filter(function (d) { return d['year'] == +selectedGroup })
 
       y_label
         .text(selectedGroup)
 
       // Give these new data to update line
       dot
-        .dataFilter
+        .data(data)
+        .filter(function (d) { return d['year'] == +selectedGroup })
         .transition()
         .duration(1000)
         .attr("cx", function (d) { return x(d['Log GDP per capita']); })
