@@ -190,7 +190,7 @@
         else if (d['Life Ladder'] < 4.5) {return color("low")}
         else if (d['Life Ladder'] < 6) {return color("medium")}
         else if (d['Life Ladder'] < 7) {return color("high")}
-        else {return color("very-high")}
+        else if (d['Life Ladder'] < 10){return color("very-high")}
       })
     .on("mouseover", mouseover)
     .on("mousemove", mousemove)
