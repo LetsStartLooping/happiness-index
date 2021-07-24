@@ -33,16 +33,7 @@
     .attr("transform",
       "translate(" + margin.left + "," + margin.top + ")")
   
-  // create a tooltip
-//   var Tooltip = d3.select("#my_dataviz")
-//     .append("div")
-//     .style("opacity", 0)
-//     .attr("class", "tooltip")
-//     .style("background-color", "white")
-//     .style("border", "solid")
-//     .style("border-width", "2px")
-//     .style("border-radius", "5px")
-//     .style("padding", "5px")
+
 
   // Add the grey background that makes ggplot2 famous
   // svg
@@ -126,30 +117,39 @@
       .domain(["very-low", "low", "medium", "high", "very-high"])
       .range(["#243B81", "#62BCCC", "#F64F39", "#EE9323", "#FFFF00"])
 
-    
+    // create a tooltip
+  var Tooltip = d3.select("#my_dataviz")
+    .append("div")
+    .style("opacity", 0)
+    .attr("class", "tooltip")
+    .style("background-color", "white")
+    .style("border", "solid")
+    .style("border-width", "2px")
+    .style("border-radius", "5px")
+    .style("padding", "5px")
     
 
   // Three function that change the tooltip when user hover / move / leave a cell
-  var mouseover = function(d) {
-    Tooltip
-      .style("opacity", 1)
-    d3.select(this)
-      .style("stroke", "black")
-      .style("opacity", 1)
-  }
-  var mousemove = function(d) {
-    Tooltip
-      .html("Country: " + d.['Country name'])
-      .style("left", (d3.mouse(this)[0]+70) + "px")
-      .style("top", (d3.mouse(this)[1]) + "px")
-  }
-  var mouseleave = function(d) {
-    Tooltip
-      .style("opacity", 0)
-    d3.select(this)
-      .style("stroke", "none")
-      .style("opacity", 0.8)
-  }
+//   var mouseover = function(d) {
+//     Tooltip
+//       .style("opacity", 1)
+//     d3.select(this)
+//       .style("stroke", "black")
+//       .style("opacity", 1)
+//   }
+//   var mousemove = function(d) {
+//     Tooltip
+//       .html("Country: " + d.['Country name'])
+//       .style("left", (d3.mouse(this)[0]+70) + "px")
+//       .style("top", (d3.mouse(this)[1]) + "px")
+//   }
+//   var mouseleave = function(d) {
+//     Tooltip
+//       .style("opacity", 0)
+//     d3.select(this)
+//       .style("stroke", "none")
+//       .style("opacity", 0.8)
+//   }
     
     
     
@@ -178,9 +178,9 @@
         else {return color("very-high")}
       })
       .style("stroke", "black")
-    .on("mouseover", mouseover)
-    .on("mousemove", mousemove)
-    .on("mouseleave", mouseleave)
+//     .on("mouseover", mouseover)
+//     .on("mousemove", mousemove)
+//     .on("mouseleave", mouseleave)
 
 
 
