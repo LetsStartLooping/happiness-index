@@ -7,7 +7,7 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 
 <body>
-  <h1>World Happiness Index!!!</h1>
+  <h1>World Happiness Index!!!!!</h1>
 </body>
 
 <!-- Initialize a select button -->
@@ -130,26 +130,26 @@
     .style("padding", "5px")
 
   // Three function that change the tooltip when user hover / move / leave a cell
-//   var mouseover = function(d) {
-//     Tooltip
-//       .style("opacity", 1)
-//     d3.select(this)
-//       .style("stroke", "black")
-//       .style("opacity", 1)
-//   }
-//   var mousemove = function(d) {
-//     Tooltip
-//       .html("The exact value of<br>this cell is: " + d.['Country name'])
-//       .style("left", (d3.mouse(this)[0]+70) + "px")
-//       .style("top", (d3.mouse(this)[1]) + "px")
-//   }
-//   var mouseleave = function(d) {
-//     Tooltip
-//       .style("opacity", 0)
-//     d3.select(this)
-//       .style("stroke", "none")
-//       .style("opacity", 0.8)
-//   }
+  var mouseover = function(d) {
+    Tooltip
+      .style("opacity", 1)
+    d3.select(this)
+      .style("stroke", "black")
+      .style("opacity", 1)
+  }
+  var mousemove = function(d) {
+    Tooltip
+      .html("The exact value of<br>this cell is: " + d.['Country name'])
+      .style("left", (d3.mouse(this)[0]+70) + "px")
+      .style("top", (d3.mouse(this)[1]) + "px")
+  }
+  var mouseleave = function(d) {
+    Tooltip
+      .style("opacity", 0)
+    d3.select(this)
+      .style("stroke", "none")
+      .style("opacity", 0.8)
+  }
     
     
     
@@ -178,6 +178,9 @@
         else {return color("very-high")}
       })
       .style("stroke", "black")
+    .on("mouseover", mouseover)
+    .on("mousemove", mousemove)
+    .on("mouseleave", mouseleave)
 
 
 
