@@ -7,7 +7,7 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 
 <body>
-  <h1>World Happiness Index!!!</h1>
+  <h1>World Happiness Index!!!!</h1>
 </body>
 
 <!-- Initialize a select button -->
@@ -109,7 +109,7 @@
       .range(["#F8766D", "#00BA38", "#619CFF"])
 
     // Add dots
-    svg.append('g')
+    var dot = svg.append('g')
       .selectAll("dot")
       .data(data)
       .enter()
