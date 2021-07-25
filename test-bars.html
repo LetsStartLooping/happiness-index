@@ -11,7 +11,7 @@
 
 <!-- Add 2 buttons -->
 <button onclick="update('Generosity')">Generosity</button>
-<button onclick="update('Life Ladder')">Life Ladder</button>
+<button onclick="update('Log GDP per capita')">Log GDP per capita</button>
 
 <script>
 
@@ -79,9 +79,9 @@ function update(selectedVar) {
       .duration(1000)
         .attr("cx", function(d) { return x(d['Life Ladder']); })
         .attr("cy", function(d) { return y(d[selectedVar]); })
-        .attr("r", 4)
+        .attr("r", 2)
 //         .attr("height", function(d) { return height - y(d[selectedVar]); })
-        .attr("fill", "#69b3a2")
+        .attr("fill", "#69ffa2")
   })
 
 }
