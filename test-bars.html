@@ -4,7 +4,7 @@
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
 
-
+<h1>World Happiness!</h1>
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
@@ -59,7 +59,7 @@ function update(selectedVar) {
   d3.csv("world-happiness-report.csv", function(data) {
       
       data = data.filter(function(d) {
-          if d['year'] == "2018" {
+          if (d['year'] == "2018") {
               return true;
           } else {
               return false;
