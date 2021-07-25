@@ -58,6 +58,14 @@ function update(selectedVar) {
   // Parse the Data
   d3.csv("world-happiness-report.csv", function(data) {
       
+      data = data.filter(function(d) {
+          if d['year'] == "2018" {
+              return true;
+          } else {
+              return false;
+          }
+      })
+      
       data.forEach(function(d){ 
             d['Log GDP per capita'] = +d['Log GDP per capita']; 
             d['Perceptions of corruption'] = +d['Perceptions of corruption'];
@@ -108,6 +116,6 @@ function update(selectedVar) {
 }
 
 // Initialize plot
-update('Generosity')
+update('Social Support')
 
 </script>
