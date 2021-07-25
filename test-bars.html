@@ -68,7 +68,7 @@
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
 
-<h1>World Happiness!</h1>
+<h1>World Happiness!!!</h1>
 
 
 <div style="margin-bottom: 30px; margin-left: 60px;">
@@ -230,13 +230,13 @@ var showTooltip = function(d) {
   tooltip
     .style("opacity", 1)
     .html("Country: " + d['Country name'])
-    .style("top", (event.pageY)+"px")
-    .style("left",(event.pageX)+"px")
+    .style("top", (event.pageY + 20)+"px")
+    .style("left",(event.pageX + 20)+"px")
 }
 var moveTooltip = function(d) {
   tooltip
-    .style("top", (event.pageY)+"px")
-    .style("left",(event.pageX)+"px")
+    .style("top", (event.pageY + 20)+"px")
+    .style("left",(event.pageX + 20)+"px")
 }
 var hideTooltip = function(d) {
   tooltip
