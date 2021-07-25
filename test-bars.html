@@ -2,7 +2,62 @@
 <meta charset="utf-8">
 
 <head>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+          box-sizing: border-box;
+        }
+
+        .slider {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 1000px;
+          height: 10px;
+          background: #D3D3D3;
+          outline: none;
+          opacity: 0.7;
+          -webkit-transition: .2s;
+          transition: opacity .2s;
+        }
+
+        .slider:hover {
+          opacity: 1;
+        }
+
+        .slider::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 10px;
+          height: 10px;
+          background: #FF00BB;
+          cursor: pointer;
+        } 
+
+        .slider::-moz-range-thumb {
+          width: 10px;
+          height: 10px;
+          background: #FF11BB;
+          cursor: pointer;
+        }
+
+        .sliderticks {
+          width: 1000px;
+          justify-content: space-between;
+          padding: 0 10px;
+        }
+
+        .sliderticks p {
+          position: relative;
+
+          justify-content: center;
+          text-align: center;
+          width: 1px;
+          background: #D3D3D3;
+          height: 10px;
+          line-height: 40px;
+          margin: 0 0 20px 0;
+        }
+
+    </style>
 </head>
 
 <!-- Load d3.js -->
