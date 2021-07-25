@@ -64,7 +64,7 @@
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
 
-<h1>World Happiness!!!</h1>
+<h1>World Happiness!</h1>
 
 
 <div style="margin-bottom: 30px; margin-left: 60px;">
@@ -136,6 +136,7 @@
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
 
+<div id="tooltip"></div>
 
 <script>
 
@@ -273,7 +274,7 @@ function update(selectedVar) {
     
       
     // -1- Create a tooltip div that is hidden by default:
-    var tooltip = d3.select("#my_dataviz")
+    var tooltip = d3.select("#tooltip")
       .append("div")
         .style("opacity", 0)
         .attr("class", "tooltip")
