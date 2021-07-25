@@ -98,7 +98,7 @@
 
 <div class="range">
     
-    <input class="slider" type="range" min="2011" max="2020" step="1">
+    <input class="slider" type="range" min="2011" max="2020" step="1" id="yearSlider">
     
     <div class="sliderticks">
         <p>2011</p>
@@ -190,6 +190,9 @@ yearDropdown.on("change", function (d) {
       // run the updateChart function with this selected option
       update(selectedItem)
 })
+    
+yearSlider = d3.select('#yearSlider');
+    console.log(yearSlider.property('value');
 
 // A function that create / update the plot for a given variable:
 function update(selectedVar) {
