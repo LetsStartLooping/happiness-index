@@ -10,14 +10,14 @@
 <div id="my_dataviz"></div>
 
 <!-- Add 2 buttons -->
-<button onclick="update('var1')">Variable 1</button>
-<button onclick="update('var2')">Variable 2</button>
+<button onclick="update('Generosity')">Variable 1</button>
+<button onclick="update('Life Ladder')">Variable 2</button>
 
 <script>
 
 // set the dimensions and margins of the graph
 var margin = {top: 30, right: 30, bottom: 70, left: 60},
-    width = 460 - margin.left - margin.right,
+    width = 10240 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
@@ -47,10 +47,19 @@ var yAxis = svg.append("g")
 function update(selectedVar) {
 
   // Parse the Data
-  d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/barplot_change_data.csv", function(data) {
+  d3.csv("world-happiness-report.csv", function(data) {
+      
+      data.forEach(function(d){ 
+            d['Log GDP per capita'] = +d['Log GDP per capita']; 
+            d['Perceptions of corruption'] = +d['Perceptions of corruption'];
+            d['Healthy life expectancy at birth'] = +d['Healthy life expectancy at birth'];
+            d['Generosity'] = +d['Generosity'];
+            d['year'] = +d['year'];
+            d['Life Ladder'] = +d['Life Ladder'];
+          });
 
     // X axis
-    x.domain(data.map(function(d) { return d.group; }))
+    x.domain(data.map(function(d) { return d['Country name']; }))
     xAxis.transition().duration(1000).call(d3.axisBottom(x))
 
     // Add Y axis
@@ -78,6 +87,6 @@ function update(selectedVar) {
 }
 
 // Initialize plot
-update('var1')
+update('Generosity')
 
 </script>
