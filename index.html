@@ -18,7 +18,7 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 
 <body>
-  <h1>World Happiness!!!</h1>
+  <h1>World Happiness!!!!!</h1>
   <p>Let's explore how World Happiness is impacted by different parametrs like GDP per Capita, Social Support, Curruption, Generosity, Freedom to Make Life Choises. 
     Also, let's explore how it has changed over the years.</p>
 </body>
@@ -33,10 +33,7 @@
 
 <script>
 
-  // set the dimensions and margins of the graph
-  var margin = { top: 10, right: 30, bottom: 40, left: 50 },
-    width = 1024 - margin.left - margin.right,
-    height = 720 - margin.top - margin.bottom;
+  
 
   
   
@@ -45,6 +42,11 @@
       
       var svg = d3.select("svg");
       svg.selectAll("*").remove();
+    
+    // set the dimensions and margins of the graph
+  var margin = { top: 10, right: 30, bottom: 40, left: 50 },
+    width = 1024 - margin.left - margin.right,
+    height = 720 - margin.top - margin.bottom;
     
     // append the svg object to the body of the page
       var svg = d3.select("#my_dataviz")
