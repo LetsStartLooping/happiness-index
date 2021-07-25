@@ -5,7 +5,7 @@
 .slider {
   -webkit-appearance: none;
   appearance: none;
-  width: 500px;
+  width: 1000px;
   height: 10px;
   background: #D3D3D3;
   outline: none;
@@ -30,12 +30,12 @@
 .slider::-moz-range-thumb {
   width: 10px;
   height: 10px;
-  background: #FF00BB;
+  background: #FF11BB;
   cursor: pointer;
 }
 
 .sliderticks {
-  width: 500px;
+  width: 1000px;
   justify-content: space-between;
   padding: 0 10px;
 }
