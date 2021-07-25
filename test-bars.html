@@ -31,8 +31,8 @@ var svg = d3.select("#my_dataviz")
 
 // Initialize the X axis
 var x = d3.scaleLinear()
-  .range([ 0, width ])
-  .padding(0.2);
+  .range([ 0, width ]);
+//   .padding(0.2);
 var xAxis = svg.append("g")
   .attr("transform", "translate(0," + height + ")")
 
