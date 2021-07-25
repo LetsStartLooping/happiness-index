@@ -68,7 +68,7 @@
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
 
-<h1>World Happiness!!!</h1>
+<h1>World Happiness!</h1>
 
 
 <div style="margin-bottom: 30px; margin-left: 60px;">
@@ -207,47 +207,47 @@ yearSlider.on("change", function (d) {
       update(selectedItem)
 })
     
-    // -1- Create a tooltip div that is hidden by default:
-    var tooltip = d3.select("#tooltip")
+// -1- Create a tooltip div that is hidden by default:
+var tooltip = d3.select("#tooltip")
 //       .append("div")
-        .style("opacity", 0)
-        .style("position", "absolute")
-        .attr("class", "tooltip")
-        .style("background-color", "white")
-        .style("border-color", "black")
-        .style("border-radius", "5px")
-        .style("padding", "10px")
-        .style("color", "black")
+    .style("opacity", 0)
+    .style("position", "absolute")
+    .attr("class", "tooltip")
+    .style("background-color", "white")
+    .style("border-color", "black")
+    .style("border-radius", "5px")
+    .style("padding", "10px")
+    .style("color", "black")
 //         .append("g")
 //             .attr("transform",
 //             "translate(" + margin.left + "," + margin.top + ")")
-    
-    // -2- Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
-    var showTooltip = function(d) {
-      tooltip
-        .transition()
-        .duration(200)
-      tooltip
-        .style("opacity", 1)
-        .html("Country: " + d['Country name'])
-        .style("top",  (margin.top + d3.mouse(this)[1]) + "px")
-        .style("left", (margin.left + d3.mouse(this)[0]) + "px")
-    }
-    var moveTooltip = function(d) {
-      tooltip
-        .style("top",  (margin.top + d3.mouse(this)[1]) + "px")
-        .style("left", (margin.left + d3.mouse(this)[0]) + "px")
-    }
-    var hideTooltip = function(d) {
-      tooltip
-        .transition()
-        .duration(200)
-        .style("opacity", 0)
-      
-      u
-      .style("stroke", "black")
-    }
-    
+
+// -2- Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
+var showTooltip = function(d) {
+  tooltip
+    .transition()
+    .duration(200)
+  tooltip
+    .style("opacity", 1)
+    .html("Country: " + d['Country name'])
+    .style("top", (event.pageY)+"px")
+    .style("left",(event.pageX)+"px")
+}
+var moveTooltip = function(d) {
+  tooltip
+    .style("top", (event.pageY)+"px")
+    .style("left",(event.pageX)+"px")
+}
+var hideTooltip = function(d) {
+  tooltip
+    .transition()
+    .duration(200)
+    .style("opacity", 0)
+
+  u
+  .style("stroke", "black")
+}
+
 
 // A function that create / update the plot for a given variable:
 function update(selectedVar) {
