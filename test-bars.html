@@ -4,14 +4,7 @@
 <head>
     <style>
         
-        #tooltip {
-            opacity: 0;
-            position: absolute;
-            text-align: center;
-            width: 60px; height: 40px;
-            background: white;
-            border: 0px;
-        }
+
         
         
         * {
@@ -75,7 +68,7 @@
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
 
-<h1>World Happiness!</h1>
+<h1>World Happiness!!!</h1>
 
 
 <div style="margin-bottom: 30px; margin-left: 60px;">
@@ -215,14 +208,14 @@ yearSlider.on("change", function (d) {
 })
     
     // -1- Create a tooltip div that is hidden by default:
-    var tooltip = d3.select("#tooltip");
+    var tooltip = d3.select("#tooltip")
 //       .append("div")
-//         .style("opacity", 0)
-//         .attr("class", "tooltip")
-//         .style("background-color", "black")
-//         .style("border-radius", "5px")
-//         .style("padding", "10px")
-//         .style("color", "white")
+        .style("opacity", 0)
+        .attr("class", "tooltip")
+        .style("background-color", "black")
+        .style("border-radius", "5px")
+        .style("padding", "10px")
+        .style("color", "white")
     
     // -2- Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
     var showTooltip = function(d) {
