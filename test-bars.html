@@ -64,7 +64,7 @@
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
 
-<h1>World Happiness!!!</h1>
+<h1>World Happiness!</h1>
 
 
 <div style="margin-bottom: 30px; margin-left: 60px;">
@@ -218,13 +218,13 @@ yearSlider.on("change", function (d) {
       tooltip
         .style("opacity", 1)
         .html("Country: " + d['Country name'])
-        .style("left", (d3.select(this).attr("cx")+30) + "px")
-        .style("top", (d3.select(this).attr("cy")+30) + "px")
+        .style("left",(d3.event.pageX)+"px")
+        .style("top",(d3.event.pageY)+"px")
     }
     var moveTooltip = function(d) {
       tooltip
-        .style("left", (d3.select(this).attr("cx")+30) + "px")
-        .style("top", (d3.select(this).attr("cy")+30) + "px")
+        .style("left",(d3.event.pageX)+"px")
+        .style("top",(d3.event.pageY)+"px")
     }
     var hideTooltip = function(d) {
       tooltip
