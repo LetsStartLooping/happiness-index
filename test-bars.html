@@ -75,7 +75,7 @@
     <button onclick="update('Freedom to make life choices')">Freedom to make life choices</button>
 </div>
 
-
+<!--
 <div style="margin-bottom: 30px;">
 
     <label for="year">Choose a year:</label>
@@ -95,8 +95,10 @@
 
 </div>
 
+-->
 
-<div class="range">
+
+<div class="range" style="margin-left: 60px;">
     
     <input class="slider" type="range" min="2011" max="2020" step="1" id="yearSlider">
     
@@ -179,20 +181,20 @@ var color = d3.scaleOrdinal()
     .range(["#243B81", "#62BCCC", "#F64F39", "#EE9323", "#FFFF00"])
 
 
-var yearDropdown = d3.select('#year');
-selectedYear = yearDropdown.property('value');
+// var yearDropdown = d3.select('#year');
+// selectedYear = yearDropdown.property('value');
   
-// console.log(d3.select('#tickmarks').property('value'));
+// // console.log(d3.select('#tickmarks').property('value'));
   
-yearDropdown.on("change", function (d) {
-      // recover the option that has been chosen
-      selectedYear = d3.select(this).property("value")
-      // run the updateChart function with this selected option
-      update(selectedItem)
-})
+// yearDropdown.on("change", function (d) {
+//       // recover the option that has been chosen
+//       selectedYear = d3.select(this).property("value")
+//       // run the updateChart function with this selected option
+//       update(selectedItem)
+// })
     
 yearSlider = d3.select('#yearSlider');
-    console.log(yearSlider.property('value'));
+selectedYear = yearSlider.property('value');
     
     
 yearSlider.on("change", function (d) {
