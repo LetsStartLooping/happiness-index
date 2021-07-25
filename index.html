@@ -18,7 +18,7 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 
 <body>
-  <h1>World Happiness!!!!!</h1>
+  <h1>World Happiness!!!</h1>
   <p>Let's explore how World Happiness is impacted by different parametrs like GDP per Capita, Social Support, Curruption, Generosity, Freedom to Make Life Choises. 
     Also, let's explore how it has changed over the years.</p>
 </body>
@@ -38,19 +38,22 @@
     width = 1024 - margin.left - margin.right,
     height = 720 - margin.top - margin.bottom;
 
-  // append the svg object to the body of the page
-  var svg = d3.select("#my_dataviz")
-    .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform",
-      "translate(" + margin.left + "," + margin.top + ")")
+  
   
 
   function changeXAxis(new_x_data) { 
       
-      d3.selectAll("svg > *").remove();
+      var svg = d3.select("svg");
+      svg.selectAll("*").remove();
+    
+    // append the svg object to the body of the page
+      var svg = d3.select("#my_dataviz")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")")
     
       //Read the data
       d3.csv("world-happiness-report.csv", function (data) {
