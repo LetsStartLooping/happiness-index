@@ -162,11 +162,11 @@ function update(selectedVar) {
     
     
     // variable u: map data to existing dots
-    var u = svg.selectAll("circle")
+    var dots = svg.selectAll("circle")
       .data(data)
 
     // update dots
-    u
+    dots
       .enter()
 //       .filter(function (d) { return d['year'] == 2018 })
       .append("circle")
@@ -190,6 +190,8 @@ function update(selectedVar) {
           else if (d['Life Ladder'] < 10){return color("very-high")}
         })
        .style("stroke", "black")
+    
+    dots
         .on("mouseover", showTooltip )
         .on("mousemove", moveTooltip )
         .on("mouseleave", hideTooltip )
