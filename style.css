@@ -25,7 +25,7 @@
   height: 10px;
   background: #FF00BB;
   cursor: pointer;
-}
+} 
 
 .slider::-moz-range-thumb {
   width: 10px;
