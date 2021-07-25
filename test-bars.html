@@ -273,7 +273,7 @@ function update(selectedVar) {
     console.log(selectedVar)
       
     // X axis
-    x.domain([0, d3.max(data, function(d) { return +d['Life Ladder'] }) ]);
+    x.domain([d3.min(data, function(d) { return +d['Life Ladder'] }), d3.max(data, function(d) { return +d['Life Ladder'] }) ]);
     xAxis.transition().duration(1000).call(d3.axisBottom(x))
 
     // Add Y axis
