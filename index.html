@@ -50,7 +50,7 @@
 
   function changeXAxis(new_x_data) { 
       
-      d3.select("my_dataviz").html = ""
+      d3.select("my_dataviz").innerHTML = ""
     
       //Read the data
       d3.csv("world-happiness-report.csv", function (data) {
