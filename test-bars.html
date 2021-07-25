@@ -193,6 +193,14 @@ yearDropdown.on("change", function (d) {
     
 yearSlider = d3.select('#yearSlider');
     console.log(yearSlider.property('value'));
+    
+    
+yearSlider.on("change", function (d) {
+      // recover the option that has been chosen
+      selectedYear = d3.select(this).property("value")
+      // run the updateChart function with this selected option
+      update(selectedItem)
+})
 
 // A function that create / update the plot for a given variable:
 function update(selectedVar) {
