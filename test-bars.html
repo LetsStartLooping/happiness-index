@@ -161,11 +161,11 @@ function update(selectedVar) {
     
     
     
-    // variable u: map data to existing bars
+    // variable u: map data to existing dots
     var u = svg.selectAll("circle")
       .data(data)
 
-    // update bars
+    // update dots
     u
       .enter()
 //       .filter(function (d) { return d['year'] == 2018 })
@@ -176,14 +176,14 @@ function update(selectedVar) {
         .attr("cx", function(d) { return x(d['Life Ladder']); })
         .attr("cy", function(d) { return y(d[selectedVar]); })
         .attr("r", function (d) { 
-          if (d['Life Ladder'] < 3) {return 3}
+          if (d['Life Ladder'] < 3.5) {return 3}
           else if (d['Life Ladder'] < 4.5) {return 4.5}
           else if (d['Life Ladder'] < 6) {return 6}
           else if (d['Life Ladder'] < 7) {return 7.5}
           else {return 9}
         })
         .style("fill", function (d) { 
-          if (d['Life Ladder'] < 3) {return color("very-low")}
+          if (d['Life Ladder'] < 3.5) {return color("very-low")}
           else if (d['Life Ladder'] < 4.5) {return color("low")}
           else if (d['Life Ladder'] < 6) {return color("medium")}
           else if (d['Life Ladder'] < 7) {return color("high")}
