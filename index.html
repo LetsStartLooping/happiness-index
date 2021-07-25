@@ -48,129 +48,114 @@
       "translate(" + margin.left + "," + margin.top + ")")
   
 
-
-  // Add the grey background that makes ggplot2 famous
-  // svg
-  //   .append("rect")
-  //     .attr("x",0)
-  //     .attr("y",0)
-  //     .attr("height", height)
-  //     .attr("width", height)
-  //     .style("fill", "FFFFFF")
-
-  function changeXAxis(new_x_data) {
-  
-//     d3.select(id).html = ""
+  function changeXAxis(new_x_data) { 
+      
+      d3.select("my_dataviz").html = ""
     
-    //Read the data
-    d3.csv("world-happiness-report.csv", function (data) {
+      //Read the data
+      d3.csv("world-happiness-report.csv", function (data) {
 
-      data.forEach(function(d){ 
-        d['Log GDP per capita'] = +d['Log GDP per capita']; 
-        d['Perceptions of corruption'] = +d['Perceptions of corruption'];
-        d['year'] = +d['year'];
-        d['Life Ladder'] = +d['Life Ladder'];
-      });
+          // Convert to Numbers
+          data.forEach(function(d){ 
+            d['Log GDP per capita'] = +d['Log GDP per capita']; 
+            d['Perceptions of corruption'] = +d['Perceptions of corruption'];
+            d['Healthy life expectancy at birth'] = +d['Healthy life expectancy at birth'];
+            d['Generosity'] = +d['Generosity'];
+            d['year'] = +d['year'];
+            d['Life Ladder'] = +d['Life Ladder'];
+          });
 
-      console.log(data)
+          // Get list of all Years
+          var allGroup = d3.map(data, function (d) { return (+d['year']) }).keys()
 
-      // List of Years
-      var allGroup = d3.map(data, function (d) { return (+d['year']) }).keys()
-
-      var x_data = new_x_data;
-      var y_data = 'Healthy life expectancy at birth';
+          var x_data = new_x_data;
+          var y_data = 'Healthy life expectancy at birth';
 
   //     var x_data = 'Perceptions of corruption';
   //     var y_data = 'Log GDP per capita';
 
-      console.log(+allGroup[0])
-
-      // add the options to the button
-      d3.select("#selectButton")
-        .selectAll('myOptions')
-        .data(allGroup)
-        .enter()
-        .append('option')
-        .text(function (d) { return d; }) // text showed in the menu
-        .attr("value", function (d) { return d; }) // corresponding value returned by the button
-
-
-      // Add X axis
-    var x = d3.scaleLinear()
-  //     .domain([0, 1])
-      .domain(d3.extent(data, function(d) { return d[x_data]; }))
-      .range([ 0, width ])
-    svg.append("g")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x).ticks(10))
-  //     .select(".domain").remove()
-
-    // Add Y axis
-    var y = d3.scaleLinear()
-  //     .domain([5.9, 12])
-      .domain(d3.extent(data, function(d) { return d[y_data]; }))
-      .range([ height, 0])
-      .nice()
-    svg.append("g")
-      .call(d3.axisLeft(y).ticks(7))
-  //     .select(".domain").remove()
-
-      // Customization
-      //   svg.selectAll(".tick line").attr("stroke", "black")
-
-      // Add X axis label:
-      var x_label = svg.append("text")
-        .attr("text-anchor", "end")
-        .attr("x", width / 2 + margin.left)
-        .attr("y", height + margin.top + 20)
-        .text(x_data);
-
-      // Y axis label:
-      var y_label = svg.append("text")
-        .attr("text-anchor", "end")
-        .attr("transform", "rotate(-90)")
-        .attr("y", -margin.left + 20)
-        .attr("x", -margin.top - height / 2 + 20)
-        .text(y_data)
-
-      // Color scale: give me a specie name, I return a color
-      var color = d3.scaleOrdinal()
-        .domain(["very-low", "low", "medium", "high", "very-high"])
-        .range(["#243B81", "#62BCCC", "#F64F39", "#EE9323", "#FFFF00"])
-
-      // create a tooltip
-    var Tooltip = d3.select("#my_dataviz")
-      .append("dot")
-      .style("opacity", 0)
-      .attr("class", "tooltip")
-      .style("background-color", "white")
-      .style("border", "solid")
-      .style("border-width", "2px")
-      .style("border-radius", "5px")
-      .style("padding", "5px")
+      
+          // add the options to the button
+          d3.select("#selectButton")
+            .selectAll('myOptions')
+            .data(allGroup)
+            .enter()
+            .append('option')
+            .text(function (d) { return d; }) // text showed in the menu
+            .attr("value", function (d) { return d; }) // corresponding value returned by the button
 
 
-    // Three function that change the tooltip when user hover / move / leave a cell
-    var mouseover = function(d) {
-      Tooltip
-        .style("opacity", 1)
-      d3.select(this)
-        .style("stroke", "black")
-        .style("opacity", 1)
-    }
-    var mousemove = function(d) {
-      Tooltip
-        .html("Country: " + d['Country name'])
-        .style("top", (event.pageY)+"px")
-        .style("left",(event.pageX)+"px")
-    }
-    var mouseleave = function(d) {
-      Tooltip
-        .style("opacity", 0)
-      d3.select(this)
-        .style("stroke", "none")
-        .style("opacity", 0.8)
-    }
+          // Add X axis
+          var x = d3.scaleLinear()
+              .domain(d3.extent(data, function(d) { return d[x_data]; }))
+              .range([ 0, width ])
+          svg.append("g")
+              .attr("transform", "translate(0," + height + ")")
+              .call(d3.axisBottom(x).ticks(10))
+
+          // Add Y axis
+          var y = d3.scaleLinear()
+              .domain(d3.extent(data, function(d) { return d[y_data]; }))
+              .range([ height, 0])
+              .nice()
+          svg.append("g")
+            .call(d3.axisLeft(y).ticks(7))
+
+
+
+          // Add X axis label:
+          var x_label = svg.append("text")
+            .attr("text-anchor", "end")
+            .attr("x", width / 2 + margin.left)
+            .attr("y", height + margin.top + 20)
+            .text(x_data);
+
+          // Y axis label:
+          var y_label = svg.append("text")
+            .attr("text-anchor", "end")
+            .attr("transform", "rotate(-90)")
+            .attr("y", -margin.left + 20)
+            .attr("x", -margin.top - height / 2 + 20)
+            .text(y_data)
+
+          // Color scale: Based on Happiness Index
+          var color = d3.scaleOrdinal()
+            .domain(["very-low", "low", "medium", "high", "very-high"])
+            .range(["#243B81", "#62BCCC", "#F64F39", "#EE9323", "#FFFF00"])
+
+          // create a tooltip
+          var Tooltip = d3.select("#my_dataviz")
+              .append("dot")
+              .style("opacity", 0)
+              .attr("class", "tooltip")
+              .style("background-color", "white")
+              .style("border", "solid")
+              .style("border-width", "2px")
+              .style("border-radius", "5px")
+              .style("padding", "5px")
+
+
+          // Three function that change the tooltip when user hover / move / leave a cell
+          var mouseover = function(d) {
+              Tooltip
+                .style("opacity", 1)
+              d3.select(this)
+                .style("stroke", "black")
+                .style("opacity", 1)
+          }
+          var mousemove = function(d) {
+              Tooltip
+                .html("Country: " + d['Country name'])
+                .style("top", (event.pageY)+"px")
+                .style("left",(event.pageX)+"px")
+          }
+          var mouseleave = function(d) {
+              Tooltip
+                .style("opacity", 0)
+              d3.select(this)
+                .style("stroke", "none")
+                .style("opacity", 0.8)
+          }
 
 
       var dot = svg.selectAll("dot")
@@ -178,7 +163,7 @@
 
       // Add dots
       dot
-        .append('g')
+//         .append('g')
 //         .selectAll("dot")
 //         .data(data)
         .enter()
