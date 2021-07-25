@@ -137,11 +137,6 @@
 <div id="my_dataviz"></div>
 
 
-
-
-
-
-
 <script>
 
   
@@ -241,41 +236,6 @@ function update(selectedVar) {
 
     
     
-    // -1- Create a tooltip div that is hidden by default:
-    var tooltip = d3.select("#my_dataviz")
-      .append("div")
-        .style("opacity", 0)
-        .attr("class", "tooltip")
-        .style("background-color", "black")
-        .style("border-radius", "5px")
-        .style("padding", "10px")
-        .style("color", "white")
-
-    // -2- Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
-    var showTooltip = function(d) {
-      tooltip
-        .transition()
-        .duration(200)
-      tooltip
-        .style("opacity", 1)
-        .html("Country: " + d['Country name'])
-        .style("left", (d3.mouse(this)[0]+30) + "px")
-        .style("top", (d3.mouse(this)[1]+30) + "px")
-    }
-    var moveTooltip = function(d) {
-      tooltip
-        .style("left", (d3.mouse(this)[0]+30) + "px")
-        .style("top", (d3.mouse(this)[1]+30) + "px")
-    }
-    var hideTooltip = function(d) {
-      tooltip
-        .transition()
-        .duration(200)
-        .style("opacity", 0)
-      
-      u
-      .style("stroke", "black")
-    }
     
     
     
@@ -311,6 +271,46 @@ function update(selectedVar) {
         })
        .style("stroke", "black")
     
+      
+    // -1- Create a tooltip div that is hidden by default:
+    var tooltip = d3.select("dots")
+      .append("div")
+        .style("opacity", 0)
+        .attr("class", "tooltip")
+        .style("background-color", "black")
+        .style("border-radius", "5px")
+        .style("padding", "10px")
+        .style("color", "white")
+
+    
+    // -2- Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
+    var showTooltip = function(d) {
+      tooltip
+        .transition()
+        .duration(200)
+      tooltip
+        .style("opacity", 1)
+        .html("Country: " + d['Country name'])
+        .style("left", (d3.mouse(this)[0]+30) + "px")
+        .style("top", (d3.mouse(this)[1]+30) + "px")
+    }
+    var moveTooltip = function(d) {
+      tooltip
+        .style("left", (d3.mouse(this)[0]+30) + "px")
+        .style("top", (d3.mouse(this)[1]+30) + "px")
+    }
+    var hideTooltip = function(d) {
+      tooltip
+        .transition()
+        .duration(200)
+        .style("opacity", 0)
+      
+      u
+      .style("stroke", "black")
+    }
+    
+      
+      
     dots
         .on("mouseover", showTooltip )
         .on("mousemove", moveTooltip )
