@@ -68,7 +68,7 @@
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
 
-<h1>World Happiness!!!</h1>
+<h1>World Happiness!</h1>
 
 
 <div style="margin-bottom: 30px; margin-left: 60px;">
@@ -211,6 +211,7 @@ yearSlider.on("change", function (d) {
     var tooltip = d3.select("#tooltip")
 //       .append("div")
         .style("opacity", 0)
+        .style("position", "absolute")
         .attr("class", "tooltip")
         .style("background-color", "black")
         .style("border-radius", "5px")
