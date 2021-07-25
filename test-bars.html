@@ -22,6 +22,23 @@
   <option value="2020">2020</option>
 </select>
 
+<input type="range" list="tickmarks">
+
+<datalist id="tickmarks">
+  <option value="0" label="0%"></option>
+  <option value="10"></option>
+  <option value="20"></option>
+  <option value="30"></option>
+  <option value="40"></option>
+  <option value="50" label="50%"></option>
+  <option value="60"></option>
+  <option value="70"></option>
+  <option value="80"></option>
+  <option value="90"></option>
+  <option value="100" label="100%"></option>
+</datalist>
+
+
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
@@ -76,6 +93,7 @@ var color = d3.scaleOrdinal()
 var yearDropdown = d3.select('#year');
 selectedYear = yearDropdown.property('value');
   
+console.log(d3.select('#tickmarks').property('value'));
   
 yearDropdown.on("change", function (d) {
       // recover the option that has been chosen
