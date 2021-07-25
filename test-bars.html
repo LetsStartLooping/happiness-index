@@ -10,8 +10,8 @@
 <div id="my_dataviz"></div>
 
 <!-- Add 2 buttons -->
-<button onclick="update('Generosity')">Variable 1</button>
-<button onclick="update('Life Ladder')">Variable 2</button>
+<button onclick="update('Generosity')">Generosity</button>
+<button onclick="update('Life Ladder')">Life Ladder</button>
 
 <script>
 
@@ -77,7 +77,7 @@ function update(selectedVar) {
       .merge(u)
       .transition()
       .duration(1000)
-        .attr("x", function(d) { return x(d.group); })
+        .attr("x", function(d) { return x(d['Country name']); })
         .attr("y", function(d) { return y(d[selectedVar]); })
         .attr("width", x.bandwidth())
         .attr("height", function(d) { return height - y(d[selectedVar]); })
