@@ -69,8 +69,9 @@ var color = d3.scaleOrdinal()
     .range(["#243B81", "#62BCCC", "#F64F39", "#EE9323", "#FFFF00"])
 
 
-var selYear = document.getElementById('year');
-console.log(selYear.options[selYear.selectedIndex].value);
+var yearDropdown = d3.select('#year');
+console.log(yearDropdown);
+console.log(yearDropdown.options[yearDropdown.selectedIndex].value);
 
 // A function that create / update the plot for a given variable:
 function update(selectedVar) {
