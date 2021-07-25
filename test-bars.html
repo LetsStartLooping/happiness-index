@@ -6,6 +6,10 @@
 
 <h1>World Happiness!</h1>
 
+.slider-width100
+{
+    width: 100px;
+}
 
 <label for="year">Choose a year:</label>
 
@@ -22,20 +26,20 @@
   <option value="2020">2020</option>
 </select>
 
-<input type="range" list="tickmarks">
+<input type="range" list="tickmarks" class="slider-width100">
 
 <datalist id="tickmarks">
-  <option value="0" label="0%"></option>
-  <option value="10"></option>
-  <option value="20"></option>
-  <option value="30"></option>
-  <option value="40"></option>
-  <option value="50" label="50%"></option>
-  <option value="60"></option>
-  <option value="70"></option>
-  <option value="80"></option>
-  <option value="90"></option>
-  <option value="100" label="100%"></option>
+  <option value="2011" label="0%"></option>
+  <option value="2012"></option>
+  <option value="2013"></option>
+  <option value="2014"></option>
+  <option value="2015"></option>
+  <option value="2016" label="50%"></option>
+  <option value="2017"></option>
+  <option value="2018"></option>
+  <option value="2019"></option>
+  <option value="2020"></option>
+  <option value="2021" label="100%"></option>
 </datalist>
 
 
@@ -188,7 +192,7 @@ function update(selectedVar) {
       .enter()
 //       .filter(function (d) { return d['year'] == 2018 })
       .append("circle")
-      .merge(u)
+      .merge(dots)
       .transition()
       .duration(1000)
         .attr("cx", function(d) { return x(d['Life Ladder']); })
