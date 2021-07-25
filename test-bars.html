@@ -4,7 +4,7 @@
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
 
-<h1>World Happiness!</h1>
+<h1>World Happiness!!!</h1>
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
@@ -75,6 +75,8 @@ function update(selectedVar) {
             d['Life Ladder'] = +d['Life Ladder'];
           });
 
+    console.log(data)
+      
     // X axis
     x.domain([0, d3.max(data, function(d) { return +d['Life Ladder'] }) ]);
     xAxis.transition().duration(1000).call(d3.axisBottom(x))
