@@ -64,7 +64,7 @@
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
 
-<h1>World Happiness!</h1>
+<h1>World Happiness!!!</h1>
 
 
 <div style="margin-bottom: 30px; margin-left: 60px;">
@@ -209,6 +209,33 @@ yearSlider.on("change", function (d) {
         .style("border-radius", "5px")
         .style("padding", "10px")
         .style("color", "white")
+    
+    // -2- Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
+    var showTooltip = function(d) {
+      tooltip
+        .transition()
+        .duration(200)
+      tooltip
+        .style("opacity", 1)
+        .html("Country: " + d['Country name'])
+        .style("left", (d3.select(this).attr("cx")+30) + "px")
+        .style("top", (d3.select(this).attr("cy")+30) + "px")
+    }
+    var moveTooltip = function(d) {
+      tooltip
+        .style("left", (d3.select(this).attr("cx")+30) + "px")
+        .style("top", (d3.select(this).attr("cy")+30) + "px")
+    }
+    var hideTooltip = function(d) {
+      tooltip
+        .transition()
+        .duration(200)
+        .style("opacity", 0)
+      
+      u
+      .style("stroke", "black")
+    }
+    
 
 // A function that create / update the plot for a given variable:
 function update(selectedVar) {
@@ -289,31 +316,6 @@ function update(selectedVar) {
         .on("mouseleave", hideTooltip )
 
     
-    // -2- Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
-    var showTooltip = function(d) {
-      tooltip
-        .transition()
-        .duration(200)
-      tooltip
-        .style("opacity", 1)
-        .html("Country: " + d['Country name'])
-        .style("left", (d3.select(this).attr("cx")+30) + "px")
-        .style("top", (d3.select(this).attr("cy")+30) + "px")
-    }
-    var moveTooltip = function(d) {
-      tooltip
-        .style("left", (d3.select(this).attr("cx")+30) + "px")
-        .style("top", (d3.select(this).attr("cy")+30) + "px")
-    }
-    var hideTooltip = function(d) {
-      tooltip
-        .transition()
-        .duration(200)
-        .style("opacity", 0)
-      
-      u
-      .style("stroke", "black")
-    }
     
       
       
