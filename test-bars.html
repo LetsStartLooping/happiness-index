@@ -82,6 +82,7 @@ function update(selectedVar) {
     // update bars
     u
       .enter()
+      .filter(function (d) { return d['year'] == 2018 })
       .append("circle")
       .merge(u)
       .transition()
