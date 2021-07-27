@@ -69,7 +69,7 @@ function bubbleChart() {
     // size bubbles based on area
     const radiusScale = d3.scaleOrdinal()
     .domain(["very-low", "low", "medium", "high", "very-high"])
-    .range([3, 5, 7, 9, 11])
+    .range([5, 15, 25, 35, 50])
 
     // use map() to convert raw data into node data
     const myNodes = rawData.map(d => ({
