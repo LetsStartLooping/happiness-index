@@ -13,7 +13,7 @@
 
 <body>
   
-  <h1>World Happiness!</h1>
+  <h1>World Happiness!!!</h1>
 <div id = 'vis'></div>
   
 <script>
@@ -58,6 +58,11 @@ function bubbleChart() {
   const color = d3.scaleOrdinal()
     .domain(["very-low", "low", "medium", "high", "very-high"])
     .range(["#243B81", "#62BCCC", "#F64F39", "#EE9323", "#FFFF00"])
+  
+  // size bubbles based on area
+  const radiusScale = d3.scaleOrdinal()
+    .domain(["very-low", "low", "medium", "high", "very-high"])
+    .range([5, 15, 25, 35, 50])
 
   // data manipulation function takes raw data from csv and converts it into an array of node objects
   // each node will store data and visualisation values to draw a bubble
@@ -68,10 +73,7 @@ function bubbleChart() {
     // note we have to ensure that size is a number
     const maxSize = d3.max(rawData, d => +d['Life Ladder']);
 
-    // size bubbles based on area
-    const radiusScale = d3.scaleOrdinal()
-    .domain(["very-low", "low", "medium", "high", "very-high"])
-    .range([5, 15, 25, 35, 50])
+    
 
     // use map() to convert raw data into node data
     const myNodes = rawData.map(d => ({
