@@ -21,7 +21,7 @@
 
 <body>
   
-  <h1 style="margin-left: 60px;">World Happiness!!!</h1>
+  <h1 style="margin-left: 60px;">World Happiness!</h1>
   
   <div class="range" style="margin-left: 60px;">
     
@@ -51,7 +51,8 @@
   
   yearSlider.on("change", function (d) {
     
-      d3.selectAll("svg > *").remove();
+//       d3.selectAll("svg > *").remove();
+      d3.select("#vis").selectAll("svg").remove();
       myBubbleChart = bubbleChart();
       // recover the option that has been chosen
       selectedYear = d3.select(this).property("value")
