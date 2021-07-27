@@ -82,6 +82,10 @@ function bubbleChart() {
   // main entry point to bubble chart, returned by parent closure
   // prepares rawData for visualisation and adds an svg element to the provided selector and starts the visualisation process
   let chart = function chart(selector, rawData) {
+    
+    rawData = rawData.filter(function(d){ return d['year'] == "2018" });
+    console.log(rawData);
+    
     // convert raw data into nodes data
     nodes = createNodes(rawData);
 
