@@ -21,7 +21,7 @@
 
 <body>
   
-  <h1 style="margin-left: 60px;">World Happiness!!!</h1>
+  <h1 style="margin-left: 60px;">World Happiness!</h1>
   
   <div class="range" style="margin-left: 60px;">
     
@@ -110,13 +110,7 @@ function bubbleChart() {
     .range([3, 10, 20, 30, 40])
 
   
-  d3.select("#vis")
-    .append('circle')
-    .attr('cx', width - 100)
-    .attr('cy', height - 100)
-    .attr('r', 40)
-    .attr('stroke', 'black')
-    .attr('fill', '#69a3b2');
+  
   
   
   
@@ -246,6 +240,14 @@ function display(data) {
 
 // load data
 d3.csv('world-happiness-report.csv').then(display);
+  
+  d3.select("#vis")
+    .append('circle')
+    .attr('cx', 1024 - 100)
+    .attr('cy', 720 - 100)
+    .attr('r', 40)
+    .attr('stroke', 'black')
+    .attr('fill', '#69a3b2');
 
 </script>
 </body>
