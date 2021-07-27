@@ -13,7 +13,7 @@
 
 <body>
   
-  <h1>World Happiness!!!</h1>
+  <h1>World Happiness!</h1>
 <div id = 'vis'></div>
   
 <script>
@@ -64,6 +64,20 @@ function bubbleChart() {
     .domain(["very-low", "low", "medium", "high", "very-high"])
     .range([5, 15, 25, 35, 50])
 
+  
+  function getRadius(life_ladder) {
+    if (life_ladder < 3.5) {
+      return radiusScale("very-low")
+    } else if (life_ladder < 4.5) {
+      return radiusScale("low")
+    } else if (life_ladder < 6) {
+      return radiusScale("medium")
+    } else if (life_ladder < 7) {
+      return radiusScale("high")
+    } else if (life_ladder < 10){
+      return radiusScale("very-high")}
+  }
+  
   // data manipulation function takes raw data from csv and converts it into an array of node objects
   // each node will store data and visualisation values to draw a bubble
   // rawData is expected to be an array of data objects, read in d3.csv
@@ -78,13 +92,7 @@ function bubbleChart() {
     // use map() to convert raw data into node data
     const myNodes = rawData.map(d => ({
       ...d,
-//       radius: function(d) {
-//           if (+d['Life Ladder'] < 3.5) {return radiusScale("very-low")}
-//           else if (+d['Life Ladder'] < 4.5) {return radiusScale("low")}
-//           else if (+d['Life Ladder'] < 6) {return radiusScale("medium")}
-//           else if (+d['Life Ladder'] < 7) {return radiusScale("high")}
-//           else if (+d['Life Ladder'] < 10){return radiusScale("very-high")}
-//       },
+      radius: getRadius(+d['Life Ladder']),
 //       size: +d['Life Ladder'],
       x: Math.random() * 900,
       y: Math.random() * 800
@@ -118,14 +126,14 @@ function bubbleChart() {
     bubbles = elements
       .append('circle')
       .classed('bubble', true)
-      .attr('r', function (d) { 
-          if (+d['Life Ladder'] < 3.5) {return radiusScale("very-low")}
-          else if (+d['Life Ladder'] < 4.5) {return radiusScale("low")}
-          else if (+d['Life Ladder'] < 6) {return radiusScale("medium")}
-          else if (+d['Life Ladder'] < 7) {return radiusScale("high")}
-          else if (+d['Life Ladder'] < 10){return radiusScale("very-high")}
-        })
-
+//       .attr('r', function (d) { 
+//           if (+d['Life Ladder'] < 3.5) {return radiusScale("very-low")}
+//           else if (+d['Life Ladder'] < 4.5) {return radiusScale("low")}
+//           else if (+d['Life Ladder'] < 6) {return radiusScale("medium")}
+//           else if (+d['Life Ladder'] < 7) {return radiusScale("high")}
+//           else if (+d['Life Ladder'] < 10){return radiusScale("very-high")}
+//         })
+      .attr('r', d => d.radius)
       .attr('fill', function (d) { 
           if (+d['Life Ladder'] < 3.5) {return color("very-low")}
           else if (+d['Life Ladder'] < 4.5) {return color("low")}
