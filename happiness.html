@@ -21,7 +21,7 @@
 
 <body>
   
-  <h1 style="margin-left: 60px;">World Happiness!!!</h1>
+  <h1 style="margin-left: 60px;">World Happiness!</h1>
   
   <div class="range" style="margin-left: 60px;">
     
@@ -46,7 +46,7 @@
 <script>
   
   yearSlider = d3.select('#yearSlider');
-  selectedYear = yearSlider.property('value');
+  let selectedYear = yearSlider.property('value');
   
   
   yearSlider.on("change", function (d) {
@@ -152,7 +152,7 @@ function bubbleChart() {
   // prepares rawData for visualisation and adds an svg element to the provided selector and starts the visualisation process
   let chart = function chart(selector, rawData) {
     
-    rawData = rawData.filter(function(d){ return d['year'] == "2018" });
+    rawData = rawData.filter(function(d){ return d['year'] == selectedYear });
     console.log(rawData);
     
     // convert raw data into nodes data
