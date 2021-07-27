@@ -13,14 +13,14 @@
 
 <body>
   
-  <h1>World Happiness!</h1>
+  <h1>World Happiness!!!</h1>
 <div id = 'vis'></div>
   
 <script>
 // bubbleChart creation function; instantiate new bubble chart given a DOM element to display it in and a dataset to visualise
 function bubbleChart() {
-  const width = 940;
-  const height = 500;
+  const width = 1024;
+  const height = 720;
 
   // location to centre the bubbles
   const centre = { x: width/2, y: height/2 };
@@ -62,7 +62,7 @@ function bubbleChart() {
   // size bubbles based on area
   const radiusScale = d3.scaleOrdinal()
     .domain(["very-low", "low", "medium", "high", "very-high"])
-    .range([5, 15, 25, 35, 50])
+    .range([3, 10, 20, 30, 40])
 
   
   function getRadius(life_ladder) {
