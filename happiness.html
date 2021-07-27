@@ -75,11 +75,11 @@ function bubbleChart() {
     const myNodes = rawData.map(d => ({
       ...d,
       radius: radiusScale(function (d) { 
-          if (d['Life Ladder'] < 3.5) {return color("very-low")}
-          else if (d['Life Ladder'] < 4.5) {return color("low")}
-          else if (d['Life Ladder'] < 6) {return color("medium")}
-          else if (d['Life Ladder'] < 7) {return color("high")}
-          else if (d['Life Ladder'] < 10){return color("very-high")}
+          if (+d['Life Ladder'] < 3.5) {return "very-low"}
+          else if (+d['Life Ladder'] < 4.5) {return "low"}
+          else if (+d['Life Ladder'] < 6) {return "medium"}
+          else if (+d['Life Ladder'] < 7) {return "high"}
+          else if (+d['Life Ladder'] < 10){return "very-high"}
         }),
       size: +d['Life Ladder'],
       x: Math.random() * 900,
@@ -116,11 +116,11 @@ function bubbleChart() {
       .classed('bubble', true)
       .attr('r', d => d.radius)
       .attr('fill', function (d) { 
-          if (d['Life Ladder'] < 3.5) {return color("very-low")}
-          else if (d['Life Ladder'] < 4.5) {return color("low")}
-          else if (d['Life Ladder'] < 6) {return color("medium")}
-          else if (d['Life Ladder'] < 7) {return color("high")}
-          else if (d['Life Ladder'] < 10){return color("very-high")}
+          if (+d['Life Ladder'] < 3.5) {return color("very-low")}
+          else if (+d['Life Ladder'] < 4.5) {return color("low")}
+          else if (+d['Life Ladder'] < 6) {return color("medium")}
+          else if (+d['Life Ladder'] < 7) {return color("high")}
+          else if (+d['Life Ladder'] < 10){return color("very-high")}
         })
 
     // labels
