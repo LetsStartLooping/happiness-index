@@ -21,7 +21,7 @@
 
 <body>
   
-  <h1 style="margin-left: 60px;">World Happiness!</h1>
+  <h1 style="margin-left: 60px;">World Happiness!!!</h1>
   
   <div class="range" style="margin-left: 60px;">
     
@@ -166,10 +166,10 @@ function bubbleChart() {
       .attr('width', width)
       .attr('height', height)
     
-    svg.append("rect")
-    .attr("width", "100%")
-    .attr("height", "100%")
-    .attr("fill", "gainsboro");
+//     svg.append("rect")
+//     .attr("width", "100%")
+//     .attr("height", "100%")
+//     .attr("fill", "gainsboro");
 
     // bind nodes data to circle elements
     const elements = svg.selectAll('.bubble')
@@ -228,6 +228,14 @@ function bubbleChart() {
   // return chart function from closure
   return chart;
 }
+  
+    d3.select("#vis")
+    .append('circle')
+    .attr('cx', 1024 - 100)
+    .attr('cy', 720 - 100)
+    .attr('r', 40)
+    .attr('stroke', 'black')
+    .attr('fill', '#69a3b2');
 
 // new bubble chart instance
 let myBubbleChart = bubbleChart();
@@ -241,13 +249,7 @@ function display(data) {
 // load data
 d3.csv('world-happiness-report.csv').then(display);
   
-  d3.select("#vis")
-    .append('circle')
-    .attr('cx', 1024 - 100)
-    .attr('cy', 720 - 100)
-    .attr('r', 40)
-    .attr('stroke', 'black')
-    .attr('fill', '#69a3b2');
+
 
 </script>
 </body>
