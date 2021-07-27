@@ -21,10 +21,42 @@
 
 <body>
   
-  <h1>World Happiness!!!</h1>
+  <h1 style="margin-left: 60px;">World Happiness!!!</h1>
+  
+  <div class="range" style="margin-left: 60px;">
+    
+    <input class="slider" type="range" min="2011" max="2020" step="1" id="yearSlider">
+    
+    <div class="sliderticks">
+        <p>2011</p>
+        <p>2012</p>
+        <p>2013</p>
+        <p>2014</p>
+        <p>2015</p>
+        <p>2016</p>
+        <p>2017</p>
+        <p>2018</p>
+        <p>2019</p>
+        <p>2020</p>
+    </div>    
+</div>
+  
 <div id = 'vis'></div>
   
 <script>
+  
+  yearSlider = d3.select('#yearSlider');
+  selectedYear = yearSlider.property('value');
+  
+  
+  yearSlider.on("change", function (d) {
+      // recover the option that has been chosen
+      selectedYear = d3.select(this).property("value")
+      // run the updateChart function with this selected option
+      d3.csv('world-happiness-report.csv').then(display);
+  })
+  
+  
 // bubbleChart creation function; instantiate new bubble chart given a DOM element to display it in and a dataset to visualise
 function bubbleChart() {
   const width = 1024;
@@ -41,6 +73,8 @@ function bubbleChart() {
   let bubbles = null;
   let labels = null;
   let nodes = [];
+  
+  let selectedYear = 2018
 
   // charge is dependent on size of the bubble, so bigger towards the middle
   function charge(d) {
@@ -72,6 +106,8 @@ function bubbleChart() {
     .domain(["very-low", "low", "medium", "high", "very-high"])
     .range([3, 10, 20, 30, 40])
 
+  
+  
   
   function getRadius(life_ladder) {
     if (life_ladder < 3.5) {
