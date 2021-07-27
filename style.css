@@ -21,28 +21,29 @@
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 10px;
+  width: 20px;
   height: 10px;
-  background: #FF00BB;
+  background: #44AABB;
   cursor: pointer;
 } 
 
 .slider::-moz-range-thumb {
-  width: 10px;
+  width: 20px;
   height: 10px;
   background: #FF11BB;
   cursor: pointer;
 }
 
 .sliderticks {
-  width: 1000px;
+    width: 1000px;
+  display: flex;
   justify-content: space-between;
   padding: 0 10px;
 }
 
 .sliderticks p {
   position: relative;
- 
+  display: flex;
   justify-content: center;
   text-align: center;
   width: 1px;
@@ -51,11 +52,3 @@
   line-height: 40px;
   margin: 0 0 20px 0;
 }
-
-
-<style>
-    .slider-width100
-    {
-        width: 600px;
-    }
-</style>
