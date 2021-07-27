@@ -60,7 +60,7 @@ function bubbleChart() {
   function createNodes(rawData) {
     // use max size in the data as the max in the scale's domain
     // note we have to ensure that size is a number
-    const maxSize = d3.max(rawData, d => +d['Life Ladder'] * 10);
+    const maxSize = d3.max(rawData, d => +d['Life Ladder']);
 
     // size bubbles based on area
     const radiusScale = d3.scaleSqrt()
@@ -70,8 +70,8 @@ function bubbleChart() {
     // use map() to convert raw data into node data
     const myNodes = rawData.map(d => ({
       ...d,
-      radius: radiusScale(+d['Life Ladder'] * 10),
-      size: +d['Life Ladder'] * 10,
+      radius: radiusScale(+d['Life Ladder']),
+      size: +d['Life Ladder'],
       x: Math.random() * 900,
       y: Math.random() * 800
     }))
