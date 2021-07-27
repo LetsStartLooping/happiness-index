@@ -13,7 +13,7 @@
 
 <body>
   
-  <h1>World Happiness!!!</h1>
+  <h1>World Happiness!</h1>
 <div id = 'vis'></div>
   
 <script>
@@ -76,14 +76,14 @@ function bubbleChart() {
     // use map() to convert raw data into node data
     const myNodes = rawData.map(d => ({
       ...d,
-      radius: function(d) {
-          if (+d['Life Ladder'] < 3.5) {return radiusScale("very-low")}
-          else if (+d['Life Ladder'] < 4.5) {return radiusScale("low")}
-          else if (+d['Life Ladder'] < 6) {return radiusScale("medium")}
-          else if (+d['Life Ladder'] < 7) {return radiusScale("high")}
-          else if (+d['Life Ladder'] < 10){return radiusScale("very-high")}
-      },
-      size: +d['Life Ladder'],
+//       radius: function(d) {
+//           if (+d['Life Ladder'] < 3.5) {return radiusScale("very-low")}
+//           else if (+d['Life Ladder'] < 4.5) {return radiusScale("low")}
+//           else if (+d['Life Ladder'] < 6) {return radiusScale("medium")}
+//           else if (+d['Life Ladder'] < 7) {return radiusScale("high")}
+//           else if (+d['Life Ladder'] < 10){return radiusScale("very-high")}
+//       },
+//       size: +d['Life Ladder'],
       x: Math.random() * 900,
       y: Math.random() * 800
     }))
@@ -116,7 +116,14 @@ function bubbleChart() {
     bubbles = elements
       .append('circle')
       .classed('bubble', true)
-      .attr('r', d => d.radius)
+      .attr('r', function (d) { 
+          if (+d['Life Ladder'] < 3.5) {return radiusScale("very-low")}
+          else if (+d['Life Ladder'] < 4.5) {return radiusScale("low")}
+          else if (+d['Life Ladder'] < 6) {return radiusScale("medium")}
+          else if (+d['Life Ladder'] < 7) {return radiusScale("high")}
+          else if (+d['Life Ladder'] < 10){return radiusScale("very-high")}
+        })
+
       .attr('fill', function (d) { 
           if (+d['Life Ladder'] < 3.5) {return color("very-low")}
           else if (+d['Life Ladder'] < 4.5) {return color("low")}
