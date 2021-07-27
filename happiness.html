@@ -13,7 +13,7 @@
 
 <body>
   
-  <h1>World Happiness!</h1>
+  <h1>World Happiness!!!</h1>
 <div id = 'vis'></div>
   
 <script>
@@ -120,7 +120,7 @@ function bubbleChart() {
     svg.append("rect")
     .attr("width", "100%")
     .attr("height", "100%")
-    .attr("fill", "gray");
+    .attr("fill", "gainsboro");
 
     // bind nodes data to circle elements
     const elements = svg.selectAll('.bubble')
@@ -131,13 +131,6 @@ function bubbleChart() {
     bubbles = elements
       .append('circle')
       .classed('bubble', true)
-//       .attr('r', function (d) { 
-//           if (+d['Life Ladder'] < 3.5) {return radiusScale("very-low")}
-//           else if (+d['Life Ladder'] < 4.5) {return radiusScale("low")}
-//           else if (+d['Life Ladder'] < 6) {return radiusScale("medium")}
-//           else if (+d['Life Ladder'] < 7) {return radiusScale("high")}
-//           else if (+d['Life Ladder'] < 10){return radiusScale("very-high")}
-//         })
       .attr('r', d => d.radius)
       .attr('fill', function (d) { 
           if (+d['Life Ladder'] < 3.5) {return color("very-low")}
@@ -153,7 +146,14 @@ function bubbleChart() {
       .attr('dy', '.3em')
       .style('text-anchor', 'middle')
       .style('font-size', 10)
-      .text(d => d['Country name'])
+//       .text(d => d['Country name'])
+      .text(function (d) { 
+          if (+d['Life Ladder'] < 3.5) {return ""}
+          else if (+d['Life Ladder'] < 4.5) {return ""}
+          else if (+d['Life Ladder'] < 6) {return ""}
+          else if (+d['Life Ladder'] < 7) {return d['Country name']}
+          else if (+d['Life Ladder'] < 10){return d['Country name']}
+        })
 
     // set simulation's nodes to our newly created nodes array
     // simulation starts running automatically once nodes are set
