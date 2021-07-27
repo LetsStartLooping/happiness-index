@@ -12,6 +12,8 @@
 </head>
 
 <body>
+  
+  <h1>World Happiness!</h1>
 <div id = 'vis'></div>
   
 <script>
@@ -75,11 +77,11 @@ function bubbleChart() {
     const myNodes = rawData.map(d => ({
       ...d,
       radius: radiusScale(function (d) { 
-          if (+d['Life Ladder'] < 3.5) {return "very-low"}
-          else if (+d['Life Ladder'] < 4.5) {return "low"}
-          else if (+d['Life Ladder'] < 6) {return "medium"}
-          else if (+d['Life Ladder'] < 7) {return "high"}
-          else if (+d['Life Ladder'] < 10){return "very-high"}
+          if (+d['Life Ladder'] < 3.5) {return radiusScale("very-low")}
+          else if (+d['Life Ladder'] < 4.5) {return radiusScale("low")}
+          else if (+d['Life Ladder'] < 6) {return radiusScale("medium")}
+          else if (+d['Life Ladder'] < 7) {return radiusScale("high")}
+          else if (+d['Life Ladder'] < 10){return radiusScale("very-high")}
         }),
       size: +d['Life Ladder'],
       x: Math.random() * 900,
