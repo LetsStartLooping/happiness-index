@@ -52,6 +52,10 @@ function bubbleChart() {
   const fillColour = d3.scaleOrdinal()
   	.domain(["1", "2", "3", "5", "99"])
   	.range(["#0074D9", "#7FDBFF", "#39CCCC", "#3D9970", "#AAAAAA"]);
+  
+  const color = d3.scaleOrdinal()
+    .domain(["very-low", "low", "medium", "high", "very-high"])
+    .range(["#243B81", "#62BCCC", "#F64F39", "#EE9323", "#FFFF00"])
 
   // data manipulation function takes raw data from csv and converts it into an array of node objects
   // each node will store data and visualisation values to draw a bubble
@@ -105,7 +109,13 @@ function bubbleChart() {
       .append('circle')
       .classed('bubble', true)
       .attr('r', d => d.radius)
-      .attr('fill', d => fillColour('#FF5544'))
+      .attr('fill', function (d) { 
+          if (d['Life Ladder'] < 3.5) {return color("very-low")}
+          else if (d['Life Ladder'] < 4.5) {return color("low")}
+          else if (d['Life Ladder'] < 6) {return color("medium")}
+          else if (d['Life Ladder'] < 7) {return color("high")}
+          else if (d['Life Ladder'] < 10){return color("very-high")}
+        })
 
     // labels
     labels = elements
