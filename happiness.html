@@ -140,6 +140,7 @@ function bubbleChart() {
       .append('circle')
       .classed('bubble', true)
       .attr('r', d => d.radius)
+      .style("stroke", "white")
       .attr('fill', function (d) { 
           if (+d['Life Ladder'] < 3.5) {return color("very-low")}
           else if (+d['Life Ladder'] < 4.5) {return color("low")}
