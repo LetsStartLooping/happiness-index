@@ -236,7 +236,7 @@ function update(selectedVar) {
   selectedItem = selectedVar;
 
   // Parse the Data
-  d3.csv("world-happiness-report.csv", function(data) {
+  d3.csv("world-happiness-report-cleaned.csv", function(data) {
       
       data = data.filter(function(d) {
           if (d['year'] == selectedYear) {
