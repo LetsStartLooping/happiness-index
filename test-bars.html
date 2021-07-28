@@ -151,6 +151,16 @@ yearSlider.on("change", function (d) {
       d3.select("#my_dataviz").selectAll("svg").remove();
       // recover the option that has been chosen
       selectedYear = d3.select(this).property("value")
+    
+    
+      svg = d3.select("#my_dataviz")
+          .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+            .attr("transform",
+                  "translate(" + margin.left + "," + margin.top + ")");
+    
       // run the updateChart function with this selected option
       update(selectedItem)
 })
