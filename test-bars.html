@@ -9,7 +9,7 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 
-<h1>World Happiness!!!</h1>
+<h1>World Happiness!</h1>
 
 <!-- Buttons to Select the Attribute -->
 <div style="margin-bottom: 30px; margin-left: 60px;" id = "buttons">
@@ -93,17 +93,17 @@ selectedYear = yearSlider.property('value');
 function clearChart() {
     d3.select("#my_dataviz").selectAll("svg").remove();
     
-//     svg = d3.select("#my_dataviz")
-//           .append("svg")
-//             .attr("width", width + margin.left + margin.right)
-//             .attr("height", height + margin.top + margin.bottom)
-//           .append("g")
-//             .attr("transform",
-//                   "translate(" + margin.left + "," + margin.top + ")");
-//     xAxis = svg.append("g")
-//         .attr("transform", "translate(0," + height + ")")
-//     yAxis = svg.append("g")
-//         .attr("class", "myYaxis")
+    svg = d3.select("#my_dataviz")
+          .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+            .attr("transform",
+                  "translate(" + margin.left + "," + margin.top + ")");
+    xAxis = svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+    yAxis = svg.append("g")
+        .attr("class", "myYaxis")
     
 //     tooltip = d3.select("#my_dataviz")
 //       .append("div")
