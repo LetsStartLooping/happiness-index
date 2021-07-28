@@ -4,7 +4,7 @@
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
 
-<h1>World Happiness!</h1>
+<h1>World Happiness!!!</h1>
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
@@ -77,14 +77,14 @@ d3.csv("world-happiness-report-cleaned.csv", function(data) {
     .range([ 0, width ]);
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x).ticks(5));
+    .call(d3.axisBottom(x).tickFormat(d3.format('0f')).ticks(5));
 
   // Add Y axis
   var y = d3.scaleLinear()
     .domain([0, d3.max(avg_data, function(d) { return +d.value; })])
     .range([ height, 0 ]);
   svg.append("g")
-    .call(d3.axisLeft(y).tickFormat(d3.format('0f')));
+    .call(d3.axisLeft(y));
 	
   // color palette
   var res = sumstat.map(function(d){ return d.key }) // list of group names
