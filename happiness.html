@@ -65,9 +65,8 @@ const annotations = [
 // Add annotation to the chart
 const makeAnnotations = d3.annotation()
   .annotations(annotations)
-d3.select("#example1")
-  .append("g")
-  .call(makeAnnotations)
+
+
   
   yearSlider = d3.select('#yearSlider');
   let selectedYear = yearSlider.property('value');
@@ -103,6 +102,8 @@ function bubbleChart() {
   let labels = null;
   let nodes = [];
 
+  
+  
   // charge is dependent on size of the bubble, so bigger towards the middle
   function charge(d) {
     return Math.pow(d.radius, 2.0) * 0.05
@@ -229,6 +230,9 @@ function bubbleChart() {
           else if (+d['Life Ladder'] < 10){return d['Country name']}
         })
 
+    
+    
+    
     // set simulation's nodes to our newly created nodes array
     // simulation starts running automatically once nodes are set
     simulation.nodes(nodes)
@@ -273,7 +277,9 @@ function display(data) {
 // load data
 d3.csv('world-happiness-report.csv').then(display);
   
-
+d3.select("#example1")
+  .append("g")
+  .call(makeAnnotations)
 
 </script>
 </body>
