@@ -125,7 +125,7 @@ d3.csv("world-happiness-report-cleaned.csv", function(data) {
 	
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([min_y, max_y])
+    .domain([min_y - 0.5, max_y + 0.5])
     .range([ height, 0 ]);
   svg.append("g")
     .call(d3.axisLeft(y));
