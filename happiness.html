@@ -2,7 +2,7 @@
 <head>
   <meta charset="utf-8">
   <script src='https://d3js.org/d3.v5.min.js'></script>
-  <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+  
   
   <!--
   
@@ -44,27 +44,11 @@
   
 <div style="margin-left: 60px;" id = 'vis'></div>
   
-<svg width="460" height="400" id="example1"></svg>
+
   
 <script>
   
-  // Features of the annotation
-const annotations = [
-  {
-    note: {
-      label: "Here is the annotation label",
-      title: "Annotation title"
-    },
-    x: 100,
-    y: 100,
-    dy: 100,
-    dx: 100
-  }
-]
 
-// Add annotation to the chart
-const makeAnnotations = d3.annotation()
-  .annotations(annotations)
 
 
   
@@ -191,9 +175,7 @@ function bubbleChart() {
       .attr('width', width)
       .attr('height', height)
     
-    svg
-      .append("g")
-      .call(makeAnnotations)
+    
     
 //     svg.append("rect")
 //     .attr("width", "100%")
