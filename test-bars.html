@@ -9,7 +9,7 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 
-<h1>World Happiness!!!</h1>
+<h1>World Happiness!</h1>
 
 
 <div style="margin-bottom: 30px; margin-left: 60px;">
@@ -234,9 +234,15 @@ function update(selectedVar) {
       maxIndex = d3.max(data, function(d) { return +d['Life Ladder']; } );
       console.log(maxIndex)
       
+      selIndex = d3.max(data, function(d) { return +d[selectedVar]; } );
+      
       happiestCountry = ""
       hx = 0
       hy = 0
+      
+      selectedCountry = ""
+      sx = 0
+      sy = 0
       
       
       data.forEach(function(d){ 
@@ -251,6 +257,13 @@ function update(selectedVar) {
                 hx = d['Life Ladder']
                 hy = d[selectedVar]
             }
+          
+              if (selIndex == d[selectedVar]) {
+                    selectedCountry = d['Country name'];
+                    sx = d['Life Ladder']
+                    sy = d[selectedVar]
+                }
+          
           });
 
     console.log(happiestCountry)
@@ -273,6 +286,16 @@ function update(selectedVar) {
         },
         x: x(hx),
         y: y(hy),
+        dy: 100,
+        dx: 100
+      },
+      {
+        note: {
+          label: "Best  " + selectedVar,
+          title: selectedCountry
+        },
+        x: x(sx),
+        y: y(sy),
         dy: 100,
         dx: 100
       }
@@ -321,8 +344,8 @@ function update(selectedVar) {
     
     svg
       .append("g")
-      .transition()
-      .duration(1000)
+//       .transition()
+//       .duration(1000)
       .call(makeAnnotations)
     
       
