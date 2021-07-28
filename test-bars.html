@@ -332,7 +332,7 @@ d3.select("#b_fre")
 
     // update dots
     dots
-      .append('g')
+      
       .enter()
       .append("circle")
       .merge(dots)
@@ -358,6 +358,7 @@ d3.select("#b_fre")
     
       
     dots
+    .append('g')
         .on("mouseover", showTooltip )
         .on("mousemove", moveTooltip )
         .on("mouseleave", hideTooltip )
