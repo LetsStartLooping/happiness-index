@@ -251,13 +251,16 @@ function update(selectedVar) {
       console.log(maxIndex)
       
       annotLabel = ""
+      annotDirection = 1
       
       if (selectedVar == 'Perceptions of corruption') {
         selIndex = d3.min(data, function(d) { return +d[selectedVar]; } );  
           annotLabel = "Lowest"
+          annotDirection = -1
       } else {
         selIndex = d3.max(data, function(d) { return +d[selectedVar]; } );
           annotLabel = "Best"
+          annotDirection = 1
       }
       
       happiestCountry = ""
@@ -310,8 +313,8 @@ function update(selectedVar) {
         },
         x: x(hx),
         y: y(hy),
-        dy: 100,
-        dx: 100
+        dy: 100 * annotDirection,
+        dx: 50
       },
       {
         note: {
