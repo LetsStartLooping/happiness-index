@@ -4,7 +4,7 @@
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
 
-<h1>World Happiness!</h1>
+<h1>World Happiness!!!</h1>
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
@@ -53,7 +53,14 @@ d3.csv("world-happiness-report-cleaned.csv", function(data) {
           }
       })
     
-    console.log(avg_data)
+    console.log(avg_data);
+	
+    var country_data = [];
+	data.forEach(function(d){ 
+		country_data.push({key: d['year'],
+		   value: d['Life Ladder']});	
+	});
+	
     
     
     avg_data.sort(function(a, b) {
@@ -104,13 +111,13 @@ d3.csv("world-happiness-report-cleaned.csv", function(data) {
         )
     
     svg.append("path")
-      .datum(avg_data)
+      .datum(country_data)
       .attr("fill", "none")
       .attr("stroke", "green")
       .attr("stroke-width", 1.5)
       .attr("d", d3.line()
         .x(function(d) { return x(d.key) })
-        .y(function(d) { return y(d.value - 1) })
+        .y(function(d) { return y(d.value) })
         )
         
         
