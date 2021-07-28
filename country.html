@@ -4,6 +4,8 @@
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
 
+<h1>World Happiness!</h1>
+
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
 
@@ -39,6 +41,14 @@ d3.csv("world-happiness-report-cleaned.csv", function(data) {
   }).entries(data);
     
     console.log(data1)
+    
+    var data2 = d3.nest()
+      .key(function(d) { return d['year'];})
+      .rollup(function(d) { 
+       return d3.mean(d, function(g) {return +g['Life Ladder']; });
+  }).entries(data);
+    
+    console.log(data2)
     
 /*
   // Add X axis --> it is a date format
