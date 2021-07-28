@@ -4,7 +4,7 @@
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
 
-<h1>World Happiness!</h1>
+<h1>World Happiness!!!</h1>
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
@@ -58,7 +58,7 @@ d3.csv("world-happiness-report-cleaned.csv", function(data) {
     var country_data = [];
 	data.forEach(function(d){ 
 		country_data.push({key: d['year'],
-		   value: d['Life Ladder']});	
+		   value: +d['Life Ladder']});	
 	});
 	
     console.log(country_data);
