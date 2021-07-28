@@ -9,7 +9,7 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 
-<h1>World Happiness!!!</h1>
+<h1>World Happiness!</h1>
 
 
 <div style="margin-bottom: 30px; margin-left: 60px;">
@@ -146,6 +146,9 @@ selectedYear = yearSlider.property('value');
     
     
 yearSlider.on("change", function (d) {
+    
+    
+      d3.select("#my_dataviz").selectAll("svg").remove();
       // recover the option that has been chosen
       selectedYear = d3.select(this).property("value")
       // run the updateChart function with this selected option
@@ -305,7 +308,7 @@ function update(selectedVar) {
         .on("mouseleave", hideTooltip )
 
     
-    svg.select("#example1")
+    svg
       .append("g")
       .call(makeAnnotations)
     
