@@ -11,7 +11,7 @@
 
 <h1>World Happiness!</h1>
 
-
+<!-- Buttons to Select the Attribute -->
 <div style="margin-bottom: 30px; margin-left: 60px;" id = "buttons">
 <!--    <button onclick="update('Generosity')" id = ">Generosity</button> -->
     <button onclick="update('Log GDP per capita')" id = "b_gdp">Log GDP per capita</button>
@@ -20,29 +20,13 @@
     <button onclick="update('Freedom to make life choices')" id = "b_fre">Freedom to make life choices</button>
 </div>
 
-<!--
-<div style="margin-bottom: 30px;">
+<!-- Create a div where the graph will take place -->
 
-    <label for="year">Choose a year:</label>
+<div id="tooltip"></div>
 
-    <select name="year" id="year">
-      <option value="2011">2011</option>
-      <option value="2012">2012</option>
-      <option value="2013">2013</option>
-      <option value="2014">2014</option>
-      <option value="2015">2015</option>
-      <option value="2016">2016</option>
-      <option value="2017">2017</option>
-      <option value="2018">2018</option>
-      <option value="2019">2019</option>
-      <option value="2020">2020</option>
-    </select>
+<div id="my_dataviz"></div>
 
-</div>
-
--->
-
-
+<!-- Year Slector Slider -->
 <div class="range" style="margin-left: 60px;">
     
     <input class="slider" type="range" min="2011" max="2020" step="1" id="yearSlider">
@@ -59,37 +43,13 @@
         <p>2019</p>
         <p>2020</p>
     </div>
-    
-    <!--
-    <datalist id="tickmarks">
-        <option value="2011" label="0%"></option>
-        <option value="2012"></option>
-        <option value="2013"></option>
-        <option value="2014"></option>
-        <option value="2015"></option>
-        <option value="2016" label="50%"></option>
-        <option value="2017"></option>
-        <option value="2018"></option>
-        <option value="2019"></option>
-        <option value="2020" label="100%"></option>
-    </datalist>
-    -->
-    
+        
 </div>
-
-
-<!-- Create a div where the graph will take place -->
-
-<div id="tooltip"></div>
-
-<div id="my_dataviz"></div>
 
 
 <script>
 
     
-
-  
 var selectedYear = 2018
 var selectedItem = 'Log GDP per capita'
 
@@ -215,7 +175,7 @@ var hideTooltip = function(d) {
 // A function that create / update the plot for a given variable:
 function update(selectedVar) {
     
-    clearChart();
+//     clearChart();
     
 //         <button onclick="update('Log GDP per capita')" id = "b_gdp">Log GDP per capita</button>
 //     <button onclick="update('Social support')" id = "b_ss">Social Support</button>
@@ -383,6 +343,6 @@ function update(selectedVar) {
 }
 
 // Initialize plot
-update('Social support')
+update('Log GDP per capita')
 
 </script>
