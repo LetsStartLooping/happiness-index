@@ -250,7 +250,15 @@ function update(selectedVar) {
       maxIndex = d3.max(data, function(d) { return +d['Life Ladder']; } );
       console.log(maxIndex)
       
-      selIndex = d3.max(data, function(d) { return +d[selectedVar]; } );
+      annotLabel = ""
+      
+      if (selectedVar == 'Perceptions of corruption') {
+        selIndex = d3.min(data, function(d) { return +d[selectedVar]; } );  
+          annotLabel = "Lowest"
+      } else {
+        selIndex = d3.max(data, function(d) { return +d[selectedVar]; } );
+          annotLabel = "Best"
+      }
       
       happiestCountry = ""
       hx = 0
@@ -274,11 +282,11 @@ function update(selectedVar) {
                 hy = d[selectedVar]
             }
           
-              if (selIndex == d[selectedVar]) {
-                    selectedCountry = d['Country name'];
-                    sx = d['Life Ladder']
-                    sy = d[selectedVar]
-                }
+          if (selIndex == d[selectedVar]) {
+                selectedCountry = d['Country name'];
+                sx = d['Life Ladder']
+                sy = d[selectedVar]
+            }
           
           });
 
@@ -307,7 +315,7 @@ function update(selectedVar) {
       },
       {
         note: {
-          label: "Best  " + selectedVar,
+          label: annotLabel + " " + selectedVar,
           title: selectedCountry
         },
         x: x(sx),
