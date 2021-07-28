@@ -12,12 +12,12 @@
 <h1>World Happiness!</h1>
 
 
-<div style="margin-bottom: 30px; margin-left: 60px;">
-    <button onclick="update('Generosity')">Generosity</button>
-    <button onclick="update('Log GDP per capita')">Log GDP per capita</button>
-    <button onclick="update('Social support')">Social Support</button>
-    <button onclick="update('Perceptions of corruption')">Corruption</button>
-    <button onclick="update('Freedom to make life choices')">Freedom to make life choices</button>
+<div style="margin-bottom: 30px; margin-left: 60px;" id = "buttons">
+<!--    <button onclick="update('Generosity')" id = ">Generosity</button> -->
+    <button onclick="update('Log GDP per capita')" id = "b_gdp">Log GDP per capita</button>
+    <button onclick="update('Social support')" id = "b_ss">Social Support</button>
+    <button onclick="update('Perceptions of corruption')" id = "b_cur">Corruption</button>
+    <button onclick="update('Freedom to make life choices')" id = "b_fre">Freedom to make life choices</button>
 </div>
 
 <!--
@@ -217,8 +217,24 @@ function update(selectedVar) {
     
     clearChart();
     
-    d3.select(this).style("background-color", "#ccc")
-  
+//         <button onclick="update('Log GDP per capita')" id = "b_gdp">Log GDP per capita</button>
+//     <button onclick="update('Social support')" id = "b_ss">Social Support</button>
+//     <button onclick="update('Perceptions of corruption')" id = "b_cur">Corruption</button>
+//     <button onclick="update('Freedom to make life choices')" id = "b_fre">Freedom to make life choices</button>
+    
+    
+    svg.selectAll("#buttons")
+    .append('g')
+    .style("fill", "red");
+    
+ svg.select("#b_gdp")
+    .append('g')
+    .style("fill", "green");
+    
+    
+    
+    
+      
   selectedItem = selectedVar;
 
   // Parse the Data
