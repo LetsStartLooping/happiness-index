@@ -172,13 +172,38 @@ function update(selectedVar) {
 //     <button onclick="update('Freedom to make life choices')" id = "b_fre">Freedom to make life choices</button>
     
     
-    d3.selectAll("#buttons")
-    .style("background-color", "red");
+
+// ----------------- Controlling Button Colors -----------------
     
- d3.select("#b_gdp")
-    .style("background-color", "green");
+d3.select("#b_gdp")
+    .style("background-color", "whitesmoke");
+d3.select("#b_ss")
+    .style("background-color", "whitesmoke");
+d3.select("#b_cur")
+    .style("background-color", "whitesmoke");
+d3.select("#b_fre")
+    .style("background-color", "whitesmoke");
     
-    
+  switch(selectedVar) {
+  case 'Log GDP per capita':
+    d3.select("#b_gdp")
+        .style("background-color", "gainsboro");
+    break;
+  case 'Social support':
+    d3.select("#b_ss")
+        .style("background-color", "gainsboro");
+    break;
+  case 'Perceptions of corruption':
+    d3.select("#b_cur")
+        .style("background-color", "gainsboro");
+    break;
+  case 'Freedom to make life choices':
+    d3.select("#b_fre")
+        .style("background-color", "gainsboro");
+    break;
+  default:
+    // code block
+}  
     
     
       
