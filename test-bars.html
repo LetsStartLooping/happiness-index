@@ -9,7 +9,7 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 
-<h1>World Happiness!!!!!</h1>
+<h1>World Happiness!</h1>
 
 
 <div style="margin-bottom: 30px; margin-left: 60px;">
@@ -229,7 +229,7 @@ function update(selectedVar) {
       })
       
       
-      maxIndex = d3.maxIndex(data, function(d) { return +d['Life Ladder']; } );
+      maxIndex = d3.max(data, function(d) { return +d['Life Ladder']; } );
       console.log(maxIndex)
       
       
