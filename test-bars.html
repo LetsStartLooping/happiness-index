@@ -9,7 +9,7 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 
-<h1>World Happiness!!!</h1>
+<h1>World Happiness!</h1>
 
 
 <div style="margin-bottom: 30px; margin-left: 60px;">
@@ -217,6 +217,8 @@ function update(selectedVar) {
       console.log(maxIndex)
       
       happiestCountry = ""
+      hx = 0
+      hy = 0
       
       
       data.forEach(function(d){ 
@@ -228,6 +230,8 @@ function update(selectedVar) {
             d['Life Ladder'] = +d['Life Ladder'];
             if (maxIndex == d['Life Ladder']) {
                 happiestCountry = d['Country name'];
+                hx = d['Life Ladder']
+                hy = d[selectedVar]
             }
           });
 
@@ -243,14 +247,14 @@ function update(selectedVar) {
 
     
     // Features of the annotation
-const annotations = [
+    const annotations = [
       {
         note: {
           label: "Here is the annotation label",
           title: happiestCountry
         },
-        x: 100,
-        y: 100,
+        x: hx,
+        y: hy,
         dy: 100,
         dx: 100
       }
