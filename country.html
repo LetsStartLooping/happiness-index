@@ -25,6 +25,8 @@ var svg = d3.select("#my_dataviz")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
+var country = 'Switzerland'
+    
 //Read the data
 d3.csv("world-happiness-report-cleaned.csv", function(data) {
 
@@ -34,23 +36,26 @@ d3.csv("world-happiness-report-cleaned.csv", function(data) {
     .entries(data);
     
     
-  var data1 = d3.nest()
-      .key(function(d) { return d['year'];})
-      .rollup(function(d) { 
-       return d3.sum(d, function(g) {return +g['Life Ladder']; });
-  }).entries(data);
+
     
-    console.log(data1)
-    
-    var data2 = d3.nest()
+    var avg_data = d3.nest()
       .key(function(d) { return d['year'];})
       .rollup(function(d) { 
        return d3.mean(d, function(g) {return +g['Life Ladder']; });
-  }).entries(data);
+    }).entries(data);
     
-    console.log(data2)
     
-/*
+    data = data.filter(function(d) {
+          if (d['Country name'] == country) {
+              return true;
+          } else {
+              return false;
+          }
+      })
+    
+    
+    
+
   // Add X axis --> it is a date format
   var x = d3.scaleLinear()
     .domain(d3.extent(data, function(d) { return d['year']; }))
@@ -61,7 +66,7 @@ d3.csv("world-happiness-report-cleaned.csv", function(data) {
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([0, d3.max(data, function(d) { return +d.n; })])
+    .domain([0, d3.max(data, function(d) { return +d['Life Ladder']; })])
     .range([ height, 0 ]);
   svg.append("g")
     .call(d3.axisLeft(y));
@@ -74,20 +79,20 @@ d3.csv("world-happiness-report-cleaned.csv", function(data) {
 
   // Draw the line
   svg.selectAll(".line")
-      .data(sumstat)
+      .data(data)
       .enter()
       .append("path")
         .attr("fill", "none")
-        .attr("stroke", function(d){ return color(d.key) })
+        .attr("stroke", function(d){ return 'green' })
         .attr("stroke-width", 1.5)
         .attr("d", function(d){
           return d3.line()
-            .x(function(d) { return x(d.year); })
-            .y(function(d) { return y(+d.n); })
+            .x(function(d) { return x(d['year']); })
+            .y(function(d) { return y(+d['Life Ladder']); })
             (d.values)
         })
         
-        */
+        
 
 })
 
