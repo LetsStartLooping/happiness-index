@@ -9,7 +9,7 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 
-<h1>World Happiness!!!</h1>
+<h1>World Happiness!</h1>
 
 <!-- Buttons to Select the Attribute -->
 <div style="margin-bottom: 30px; margin-left: 60px;" id = "buttons">
@@ -120,7 +120,7 @@ yearSlider.on("change", function (d) {
 // -1- Create a tooltip div that is hidden by default:
 var tooltip = d3.select("#tooltip")
       .append("div")
-    .style("opacity", 1)
+    .style("opacity", 0)
     .style("position", "absolute")
     .attr("class", "tooltip")
     .style("background-color", "white")
