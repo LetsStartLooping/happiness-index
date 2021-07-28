@@ -9,7 +9,7 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 
-<h1>World Happiness!</h1>
+<h1>World Happiness!!!</h1>
 
 
 <div style="margin-bottom: 30px; margin-left: 60px;">
@@ -98,7 +98,7 @@ var selectedItem = 'Log GDP per capita'
 
 // set the dimensions and margins of the graph
 var margin = {top: 30, right: 30, bottom: 70, left: 60},
-    width = 1024 - margin.left - margin.right,
+    width = 1280 - margin.left - margin.right,
     height = 720 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
@@ -112,7 +112,7 @@ var svg = d3.select("#my_dataviz")
 
 // Initialize the X axis
 var x = d3.scaleLinear()
-  .range([ 0, width ]);
+  .range([ 0, width - 744 ]);
 //   .padding(0.2);
 var xAxis = svg.append("g")
   .attr("transform", "translate(0," + height + ")")
@@ -255,8 +255,8 @@ function update(selectedVar) {
         },
         x: x(hx),
         y: y(hy),
-        dy: -100,
-        dx: 0
+        dy: 100,
+        dx: 100
       }
     ]
 
