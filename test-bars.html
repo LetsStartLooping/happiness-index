@@ -9,7 +9,7 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 
-<h1>World Happiness!</h1>
+<h1>World Happiness!!!</h1>
 
 
 <div style="margin-bottom: 30px; margin-left: 60px;">
@@ -91,23 +91,7 @@
 <script>
 
     
-// Features of the annotation
-const annotations = [
-  {
-    note: {
-      label: "Here is the annotation label",
-      title: "Annotation title"
-    },
-    x: 100,
-    y: 100,
-    dy: 100,
-    dx: 100
-  }
-]
 
-// Add annotation to the chart
-const makeAnnotations = d3.annotation()
-  .annotations(annotations)
   
 var selectedYear = 2018
 var selectedItem = 'Log GDP per capita'
@@ -232,6 +216,8 @@ function update(selectedVar) {
       maxIndex = d3.max(data, function(d) { return +d['Life Ladder']; } );
       console.log(maxIndex)
       
+      happiestCountry = ""
+      
       
       data.forEach(function(d){ 
             d['Log GDP per capita'] = +d['Log GDP per capita']; 
@@ -240,9 +226,12 @@ function update(selectedVar) {
             d['Generosity'] = +d['Generosity'];
             d['year'] = +d['year'];
             d['Life Ladder'] = +d['Life Ladder'];
+            if (maxIndex == d['Life Ladder']) {
+                happiestCountry = d['Country name'];
+            }
           });
 
-    console.log(selectedVar)
+    console.log(happiestCountry)
       
     // X axis
     x.domain([d3.min(data, function(d) { return +d['Life Ladder'] }), d3.max(data, function(d) { return +d['Life Ladder'] }) ]);
@@ -253,7 +242,23 @@ function update(selectedVar) {
     yAxis.transition().duration(1000).call(d3.axisLeft(y));
 
     
-    
+    // Features of the annotation
+const annotations = [
+      {
+        note: {
+          label: "Here is the annotation label",
+          title: happiestCountry
+        },
+        x: 100,
+        y: 100,
+        dy: 100,
+        dx: 100
+      }
+    ]
+
+    // Add annotation to the chart
+    const makeAnnotations = d3.annotation()
+      .annotations(annotations)
     
     
     
