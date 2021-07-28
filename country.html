@@ -4,7 +4,7 @@
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
 
-<h1>World Happiness!!!</h1>
+<h1>World Happiness!</h1>
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
@@ -76,11 +76,25 @@ d3.csv("world-happiness-report-cleaned.csv", function(data) {
 					//strings instead as numeric values, thereby fixing the
 					//sort order (hopefully!).
 				});
+	
+	country_data.sort(function(a, b) {
+					return d3.descending(+a.key, +b.key);
+
+					//If your numeric values aren't sorting properly,
+					//try commenting out the line above, and instead using:
+					//
+					//return d3.descending(+a.lifeSatisfaction, +b.lifeSatisfaction);
+					//
+					//Data coming in from the CSV is saved as strings (text),
+					//so the + signs here force JavaScript to treat those
+					//strings instead as numeric values, thereby fixing the
+					//sort order (hopefully!).
+				});
     
 
   // Add X axis --> it is a date format
   var x = d3.scaleLinear()
-    .domain(d3.extent(avg_data, function(d) { return d.key; }))
+    .domain(d3.extent(country_data, function(d) { return d.key; }))
     .range([ 0, width ]);
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
@@ -88,7 +102,7 @@ d3.csv("world-happiness-report-cleaned.csv", function(data) {
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([0, d3.max(avg_data, function(d) { return +d.value; })])
+    .domain([0, d3.max(country_data, function(d) { return +d.value; })])
     .range([ height, 0 ]);
   svg.append("g")
     .call(d3.axisLeft(y));
@@ -100,15 +114,15 @@ d3.csv("world-happiness-report-cleaned.csv", function(data) {
     .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999'])
 
   // Draw the line
-  svg.append("path")
-      .datum(avg_data)
-      .attr("fill", "none")
-      .attr("stroke", "steelblue")
-      .attr("stroke-width", 1.5)
-      .attr("d", d3.line()
-        .x(function(d) { return x(d.key) })
-        .y(function(d) { return y(d.value) })
-        )
+//   svg.append("path")
+//       .datum(avg_data)
+//       .attr("fill", "none")
+//       .attr("stroke", "steelblue")
+//       .attr("stroke-width", 1.5)
+//       .attr("d", d3.line()
+//         .x(function(d) { return x(d.key) })
+//         .y(function(d) { return y(d.value) })
+//         )
     
     svg.append("path")
       .datum(country_data)
