@@ -4,7 +4,7 @@
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
 
-<h1>World Happiness!!!</h1>
+<h1>World Happiness!</h1>
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
@@ -94,15 +94,38 @@ d3.csv("world-happiness-report-cleaned.csv", function(data) {
 
   // Add X axis --> it is a date format
   var x = d3.scaleLinear()
-    .domain(d3.extent(country_data, function(d) { return d.key; }))
+    .domain(d3.extent(avg_data, function(d) { return d.key; }))
     .range([ 0, width ]);
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
     .call(d3.axisBottom(x).tickFormat(d3.format('')).ticks(5));
 
+	// Get minimum value
+	min_country = d3.min(country_data, function(d) { return +d.value; })
+	min_avg = d3.min(avg_data, function(d) { return +d.value; })
+	
+	min_y = 0
+	if (min_country <= min_avg) {
+		min_y = min_country;
+	} else {
+		min_y = min_avg
+	}
+	
+	// Get max value
+	max_country = d3.max(country_data, function(d) { return +d.value; })
+	max_avg = d3.max(avg_data, function(d) { return +d.value; })
+	
+	max_y = 0
+	if (max_country >= max_avg) {
+		max_y = max_country;
+	} else {
+		max_y = max_avg
+	}
+	
+	
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([0, d3.max(country_data, function(d) { return +d.value; })])
+    .domain([min_y, max_y])
     .range([ height, 0 ]);
   svg.append("g")
     .call(d3.axisLeft(y));
