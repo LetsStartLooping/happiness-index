@@ -228,6 +228,11 @@ function update(selectedVar) {
           }
       })
       
+      
+      maxIndex = d3.maxIndex(data, function(d) { return +d['Life Ladder']; } );
+      console.log(maxIndex)
+      
+      
       data.forEach(function(d){ 
             d['Log GDP per capita'] = +d['Log GDP per capita']; 
             d['Perceptions of corruption'] = +d['Perceptions of corruption'];
