@@ -4,7 +4,7 @@
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
 
-<h1>World Happiness!!!</h1>
+<h1>World Happiness!</h1>
 
 <!-- Initialize a select button -->
 <select id="chooseCountry"></select>
@@ -134,10 +134,10 @@ d3.csv("world-happiness-report-cleaned.csv", function(data) {
     .call(d3.axisLeft(y));
 	
   // color palette
-  var res = sumstat.map(function(d){ return d.key }) // list of group names
-  var color = d3.scaleOrdinal()
-    .domain(res)
-    .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999'])
+//   var res = sumstat.map(function(d){ return d.key }) // list of group names
+//   var color = d3.scaleOrdinal()
+//     .domain(res)
+//     .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999'])
 
   // Draw the line
   svg.append("path")
