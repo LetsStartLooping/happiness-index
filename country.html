@@ -52,7 +52,7 @@
                 "translate(" + margin.left + "," + margin.top + ")");
 
         //Read the data
-        d3.csv("https://github.com/LetsStartLooping/happiness-index/blob/main/world-happiness-report-cleaned.csv", function (data) {
+        d3.csv("world-happiness-report-cleaned.csv", function (data) {
 
 
             var countryList = d3.map(data, function (d) { return (d['Country name']) }).keys()
