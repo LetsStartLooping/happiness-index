@@ -5,7 +5,7 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 
-<h1>World Happiness!!!!!</h1>
+<h1>World Happiness!!!</h1>
 
 <!-- Initialize a select button -->
 <select id="chooseCountry"></select>
@@ -192,7 +192,7 @@
                 )
             
             var u = svg.selectAll(".lineTest")
-                .data(country_data);
+                .datum(country_data);
 
               // Updata the line
               u
@@ -210,7 +210,7 @@
                   .attr("stroke-width", 2.5)
             
             var u1 = svg.selectAll(".lineTest1")
-                .data(avg_data);
+                .datum(avg_data);
 
               // Updata the line
               u1
