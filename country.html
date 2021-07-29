@@ -54,11 +54,6 @@
         //Read the data
         d3.csv("https://github.com/LetsStartLooping/happiness-index/blob/main/world-happiness-report-cleaned.csv", function (data) {
 
-            // group the data: I want to draw one line per group
-            //   var sumstat = d3.nest() // nest function allows to group the calculation per level of a factor
-            //     .key(function(d) { return d.name;})
-            //     .entries(data);
-
 
             var countryList = d3.map(data, function (d) { return (d['Country name']) }).keys()
 
@@ -92,29 +87,11 @@
             avg_data.sort(function (a, b) {
                 return d3.descending(+a.key, +b.key);
 
-                //If your numeric values aren't sorting properly,
-                //try commenting out the line above, and instead using:
-                //
-                //return d3.descending(+a.lifeSatisfaction, +b.lifeSatisfaction);
-                //
-                //Data coming in from the CSV is saved as strings (text),
-                //so the + signs here force JavaScript to treat those
-                //strings instead as numeric values, thereby fixing the
-                //sort order (hopefully!).
             });
 
             country_data.sort(function (a, b) {
                 return d3.descending(+a.key, +b.key);
 
-                //If your numeric values aren't sorting properly,
-                //try commenting out the line above, and instead using:
-                //
-                //return d3.descending(+a.lifeSatisfaction, +b.lifeSatisfaction);
-                //
-                //Data coming in from the CSV is saved as strings (text),
-                //so the + signs here force JavaScript to treat those
-                //strings instead as numeric values, thereby fixing the
-                //sort order (hopefully!).
             });
 
 
