@@ -5,7 +5,7 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 
-<h1>World Happiness!</h1>
+<h1>World Happiness!!!</h1>
 
 <!-- Initialize a select button -->
 <select id="chooseCountry"></select>
@@ -181,11 +181,11 @@
 
             svg.append("path")
                 .datum(country_data)
-                .transition()
-                .duration(1000)
                 .attr("fill", "none")
                 .attr("stroke", "green")
                 .attr("stroke-width", 1.5)
+                .transition()
+                .duration(1000)
                 .attr("d", d3.line()
                     .x(function (d) { return x(d.key) })
                     .y(function (d) { return y(d.value) })
@@ -202,6 +202,7 @@
                 .attr("value", function (d) { return d; })
             
             
+            // Annotations
             svg
               .append("g")
               .attr('class', 'annotation-group')
@@ -210,29 +211,8 @@
 
             d3.select("#my_dataviz").selectAll('.annotation-group')
               .transition()
-              .duration(2000)
+              .duration(1000)
               .style('opacity', 1)
-
-
-            // A function that update the chart
-            function update(selectedGroup) {
-
-                // Create new data with the selection?
-                var dataFilter = data.map(function (d) { return { time: d.time, value: d[selectedGroup] } })
-
-                // Give these new data to update line
-                line
-                    .datum(dataFilter)
-                    .transition()
-                    .duration(1000)
-                    .attr("d", d3.line()
-                        .x(function (d) { return x(+d.time) })
-                        .y(function (d) { return y(+d.value) })
-                    )
-                    .attr("stroke", function (d) { return myColor(selectedGroup) })
-            }
-
-
 
         })
     }
