@@ -3,8 +3,9 @@
 
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 
-<h1>World Happiness!!!</h1>
+<h1>World Happiness!</h1>
 
 <!-- Initialize a select button -->
 <select id="chooseCountry"></select>
@@ -134,6 +135,36 @@
                 .call(d3.axisLeft(y));
 
 
+            
+            // Annotations
+            // Features of the annotation
+            const annotations = [
+              {
+                note: {
+                  label: "",
+                  title: newCountry
+                },
+                x: 100,
+                y: 100,
+                dy: 110,
+                dx: 40
+              },
+              {
+                note: {
+                  label: "",
+                  title: "World Average"
+                },
+                x: 200,
+                y: 200,
+                dy: -40,
+                dx: 100
+              }
+            ]
+            
+            // Add annotation to the chart
+            const makeAnnotations = d3.annotation()
+              .annotations(annotations)
+            
 
             // Draw the line
             svg.append("path")
@@ -169,6 +200,18 @@
                 .append('option')
                 .text(function (d) { return d; }) // text showed in the menu
                 .attr("value", function (d) { return d; })
+            
+            
+            svg
+              .append("g")
+              .attr('class', 'annotation-group')
+              .style('opacity', 0)
+              .call(makeAnnotations)
+
+            d3.select("#my_dataviz").selectAll('.annotation-group')
+              .transition()
+              .duration(2000)
+              .style('opacity', 1)
 
 
             // A function that update the chart
