@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<!--
+// Log GDP per capita
+// Social support
+// Healthy life expectancy at birth
+// Freedom to make life choices
+// Generosity
+// Perceptions of corruption
+// Positive affect
+// Negative affect
+-->
+
+<html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<body>
+  <h1>World Happiness!</h1>
+  <p>Let's explore how World Happiness is impacted by different parametrs like GDP per Capita, Social Support, Curruption, Generosity, Freedom to Make Life Choises. 
+    Also, let's explore how it has changed over the years.</p>
+
+  <a href="test-bars.html">Check these Bars</a>
+<!-- Initialize a select button -->
+<select id="selectButton">Year:</select>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+
+<button onclick="changeXAxis('Generosity')">Generosity!</button>
+
+</body>
+  
+<script>
+
+
+  function changeXAxis(new_x_data) { 
+      
+      var svg = d3.select("svg");
+      svg.selectAll("*").remove();
+    
+    // set the dimensions and margins of the graph
+  var margin = { top: 10, right: 30, bottom: 40, left: 50 },
+    width = 1024 - margin.left - margin.right,
+    height = 720 - margin.top - margin.bottom;
+    
+    // append the svg object to the body of the page
+      var svg = d3.select("#my_dataviz")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")")
+    
+      //Read the data
+      d3.csv("world-happiness-report.csv", function (data) {
+
+          // Convert to Numbers
+          data.forEach(function(d){ 
+            d['Log GDP per capita'] = +d['Log GDP per capita']; 
+            d['Perceptions of corruption'] = +d['Perceptions of corruption'];
+            d['Healthy life expectancy at birth'] = +d['Healthy life expectancy at birth'];
+            d['Generosity'] = +d['Generosity'];
+            d['year'] = +d['year'];
+            d['Life Ladder'] = +d['Life Ladder'];
+          });
+
+        console.log(data)
+        
+          // Get list of all Years
+          var allGroup = d3.map(data, function (d) { return (+d['year']) }).keys()
+          console.log(allGroup)
+
+          var x_data = new_x_data;
+          var y_data = 'Healthy life expectancy at birth';
+
+  //     var x_data = 'Perceptions of corruption';
+  //     var y_data = 'Log GDP per capita';
+
+      
+          // add the options to the button
+          d3.select("#selectButton")
+            .selectAll('myOptions')
+            .data(allGroup)
+            .enter()
+            .append('option')
+            .text(function (d) { return d; }) // text showed in the menu
+            .attr("value", function (d) { return d; }) // corresponding value returned by the button
+
+
+          // Add X axis
+          var x = d3.scaleLinear()
+              .domain(d3.extent(data, function(d) { return d[x_data]; }))
+              .range([ 0, width ])
+          svg.append("g")
+              .attr("transform", "translate(0," + height + ")")
+              .call(d3.axisBottom(x).ticks(10))
+
+          // Add Y axis
+          var y = d3.scaleLinear()
+              .domain(d3.extent(data, function(d) { return d[y_data]; }))
+              .range([ height, 0])
+              .nice()
+          svg.append("g")
+            .call(d3.axisLeft(y).ticks(7))
+
+
+
+          // Add X axis label:
+          var x_label = svg.append("text")
+            .attr("text-anchor", "end")
+            .attr("x", width / 2 + margin.left)
+            .attr("y", height + margin.top + 20)
+            .text(x_data);
+
+          // Y axis label:
+          var y_label = svg.append("text")
+            .attr("text-anchor", "end")
+            .attr("transform", "rotate(-90)")
+            .attr("y", -margin.left + 20)
+            .attr("x", -margin.top - height / 2 + 20)
+            .text(y_data)
+
+          // Color scale: Based on Happiness Index
+          var color = d3.scaleOrdinal()
+            .domain(["very-low", "low", "medium", "high", "very-high"])
+            .range(["#243B81", "#62BCCC", "#F64F39", "#EE9323", "#FFFF00"])
+
+          // create a tooltip
+          var Tooltip = d3.select("#my_dataviz")
+              .append("dot")
+              .style("opacity", 0)
+              .attr("class", "tooltip")
+              .style("background-color", "white")
+              .style("border", "solid")
+              .style("border-width", "2px")
+              .style("border-radius", "5px")
+              .style("padding", "5px")
+
+
+          // Three function that change the tooltip when user hover / move / leave a cell
+          var mouseover = function(d) {
+              Tooltip
+                .style("opacity", 1)
+              d3.select(this)
+                .style("stroke", "black")
+                .style("opacity", 1)
+          }
+          var mousemove = function(d) {
+              Tooltip
+                .html("Country: " + d['Country name'])
+                .style("top", (event.pageY)+"px")
+                .style("left",(event.pageX)+"px")
+          }
+          var mouseleave = function(d) {
+              Tooltip
+                .style("opacity", 0)
+              d3.select(this)
+                .style("stroke", "none")
+                .style("opacity", 0.8)
+          }
+
+
+      var dot = svg.selectAll("dot")
+        .data(data)
+
+      // Add dots
+      dot
+//         .append('g')
+//         .selectAll("dot")
+//         .data(data)
+        .enter()
+//         .filter(function (d) { return d['year'] == +allGroup[1] })
+        .append("circle")
+      .merge(dot)
+        .transition()
+      .duration(1000)
+        .attr("cx", function (d) { return x(d[x_data]); })
+        .attr("cy", function (d) { return y(d[y_data]); })
+        .attr("r", function (d) { 
+          if (d['Life Ladder'] < 3) {return 3}
+          else if (d['Life Ladder'] < 4.5) {return 4.5}
+          else if (d['Life Ladder'] < 6) {return 6}
+          else if (d['Life Ladder'] < 7) {return 7.5}
+          else {return 9}
+        })
+        .style("fill", function (d) { 
+          if (d['Life Ladder'] < 3) {return color("very-low")}
+          else if (d['Life Ladder'] < 4.5) {return color("low")}
+          else if (d['Life Ladder'] < 6) {return color("medium")}
+          else if (d['Life Ladder'] < 7) {return color("high")}
+          else if (d['Life Ladder'] < 10){return color("very-high")}
+        })
+      .on("mouseover", mouseover)
+      .on("mousemove", mousemove)
+      .on("mouseleave", mouseleave)
+        .style("stroke", "black")
+    
+      
+
+
+    // A function that update the chart
+    function update(selectedGroup) {
+
+      console.log(+selectedGroup)
+      console.log(data['year'])
+      // Create new data with the selection?
+//       var dataFilter = data.filter(function (d) { return d['year'] == +selectedGroup })
+
+//       y_label
+//         .text(selectedGroup)
+
+      // Give these new data to update line
+      dot
+        .data(data)
+        .filter(function (d) { return d['year'] == +selectedGroup })
+        .transition()
+        .duration(1000)
+        .attr("cx", function (d) { return x(d[x_data]); })
+        .attr("cy", function (d) { return y(d[y_data]); })
+        
+      //           .attr("stroke", function(d){ return myColor(selectedGroup) })
+    }
+
+    // When the button is changed, run the updateChart function
+    d3.select("#selectButton").on("change", function (d) {
+      // recover the option that has been chosen
+      var selectedOption = d3.select(this).property("value")
+      // run the updateChart function with this selected option
+      update(selectedOption)
+    })
+    
+    
+//     function changeXAxis(new_x_data) {
+//     // Give these new data to update line
+//       dot
+//         .data(data)
+//         .filter(function (d) { return d['year'] == +selectedGroup })
+//         .transition()
+//         .duration(1000)
+//         .attr("cx", function (d) { return x(d[new_x_data]); })
+//         .attr("cy", function (d) { return y(d[y_data]); })
+    
+//       x_label
+//         .text(new_x_data);
+//     }
+
+  })
+  
+  }
+  
+changeXAxis('Log GDP per capita')  
+  
+
+</script>
+
+</html>

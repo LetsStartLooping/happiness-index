@@ -56,3 +56,25 @@
 .float-left-child {
   float: left;
 }
+
+.parent {
+  background: mediumpurple;
+  padding: 1rem;
+}
+
+.child {
+  border: 1px solid indigo;
+  padding: 1rem;
+}
+
+.container {
+  float: left;
+}
+
+.default-font {
+  font-family: 'Roboto', sans-serif;
+}
+
+.p1 {
+  font-family: 'Ubuntu', sans-serif;
+}
