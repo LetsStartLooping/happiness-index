@@ -4,7 +4,7 @@
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
 
-<h1>World Happiness!</h1>
+<h1>World Happiness!!!</h1>
 
 <!-- Initialize a select button -->
 <select id="chooseCountry"></select>
@@ -41,6 +41,8 @@ var svg = d3.select("#my_dataviz")
     })
 	
 	function update(newCountry) {
+		
+		d3.select("#my_dataviz").selectAll('svg').remove();
     
 	//Read the data
 	d3.csv("world-happiness-report-cleaned.csv", function(data) {
