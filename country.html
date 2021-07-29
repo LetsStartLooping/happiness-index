@@ -4,7 +4,7 @@
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
 
-<h1>World Happiness!</h1>
+<h1>World Happiness!!!</h1>
 
 <!-- Initialize a select button -->
 <select id="chooseCountry"></select>
@@ -159,6 +159,8 @@ var svg = d3.select("#my_dataviz")
 	  // Draw the line
 	  svg.append("path")
 	      .datum(avg_data)
+		.transition()
+          .duration(1000)
 	      .attr("fill", "none")
 	      .attr("stroke", "steelblue")
 	      .attr("stroke-width", 1.5)
@@ -169,6 +171,8 @@ var svg = d3.select("#my_dataviz")
 
 	    svg.append("path")
 	      .datum(country_data)
+		.transition()
+          .duration(1000)
 	      .attr("fill", "none")
 	      .attr("stroke", "green")
 	      .attr("stroke-width", 1.5)
