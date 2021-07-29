@@ -5,7 +5,7 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 
-<h1>World Happiness!!!</h1>
+<h1>World Happiness!!!!!</h1>
 
 <!-- Initialize a select button -->
 <select id="chooseCountry"></select>
@@ -190,6 +190,42 @@
                     .x(function (d) { return x(d.key) })
                     .y(function (d) { return y(d.value) })
                 )
+            
+            var u = svg.selectAll(".lineTest")
+                .data(country_data);
+
+              // Updata the line
+              u
+                .enter()
+                .append("path")
+                .attr("class","lineTest")
+                .merge(u)
+                .transition()
+                .duration(3000)
+                .attr("d", d3.line()
+                  .x(function (d) { return x(d.key) })
+                  .y(function (d) { return y(d.value + 0.5) }))
+                  .attr("fill", "none")
+                  .attr("stroke", "steelblue")
+                  .attr("stroke-width", 2.5)
+            
+            var u1 = svg.selectAll(".lineTest1")
+                .data(avg_data);
+
+              // Updata the line
+              u1
+                .enter()
+                .append("path")
+                .attr("class","lineTest1")
+                .merge(u1)
+                .transition()
+                .duration(3000)
+                .attr("d", d3.line()
+                  .x(function (d) { return x(d.key) })
+                  .y(function (d) { return y(d.value + 0.5) }))
+                  .attr("fill", "none")
+                  .attr("stroke", "orangered")
+                  .attr("stroke-width", 2.5)
 
 
             // add the options to the button
