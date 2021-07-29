@@ -23,7 +23,7 @@
   appearance: none;
   width: 20px;
   height: 10px;
-  background: #44AABB;
+  background: #44CCBB;
   cursor: pointer;
 } 
 
@@ -51,4 +51,8 @@
   height: 10px;
   line-height: 40px;
   margin: 0 0 20px 0;
+}
+
+.float-left-child {
+  float: left;
 }
