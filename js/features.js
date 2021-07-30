@@ -1,4 +1,10 @@
 
+var sideTextTitles = ["Log GDP per Capita", "Social Support", "Corruption", "Freedom to make Life Choices"]
+var gdp_text = "This chart shows relationship between GDP per Capita and Happiness Index for different countries. As overall trend shows here Happiness Index tend to increase as GDP per Capita Increases."
+var ss_text = "This chart shows relationship between Happiness Index and Social Support for different countries. As overall trend shows here Happiness Index tend to increase as Social Support Increases."
+var cur_text = "This chart shows relationship between Happiness Index and Perceptions of Curruption for different countries. As overall trend shows here Happiness Index tend to increase as Perceptions of Curruption Decreases."
+var fre_text = "This chart shows relationship between Freedom to make life choices and Happiness Index for different countries. As overall trend shows here Happiness Index tend to increase as Freedom to make life choices Increases."
+
 function createFeatureChart() {
     var selectedYear = 2018
     var selectedItem = 'Log GDP per capita'
@@ -50,23 +56,31 @@ function createFeatureChart() {
         update(selectedItem)
     })
 
+    textTitle = d3.select('#sideTextTitle');
+    sideText = d3.select('#sideText');
+
     var ss_button = d3.select('#b_ss');
     ss_button.on("click", function (d) {
+        sideText.text(ss_text)
         update('Social support')
     })
 
     var cur_button = d3.select('#b_cur');
     cur_button.on("click", function (d) {
+        sideText.text(cur_text)
         update('Perceptions of corruption')
     })
 
     var gdp_button = d3.select('#b_gdp');
     gdp_button.on("click", function (d) {
+        sideText.text(gdp_text)
+
         update('Log GDP per capita')
     })
 
     var fre_button = d3.select('#b_fre');
     fre_button.on("click", function (d) {
+        sideText.text(fre_text)
         update('Freedom to make life choices')
     })
 
@@ -116,6 +130,9 @@ function createFeatureChart() {
 
     function update(selectedVar) {
 
+
+        textTitle.text(selectedVar)
+
         //     clearChart();
 
         //     d3.select('.annotation-group').remove()
@@ -126,30 +143,30 @@ function createFeatureChart() {
         // ----------------- Controlling Button Colors -----------------
 
         d3.select("#b_gdp")
-            .style("background-color", "whitesmoke");
+            .style("border-color", "whitesmoke");
         d3.select("#b_ss")
-            .style("background-color", "whitesmoke");
+            .style("border-color", "whitesmoke");
         d3.select("#b_cur")
-            .style("background-color", "whitesmoke");
+            .style("border-color", "whitesmoke");
         d3.select("#b_fre")
-            .style("background-color", "whitesmoke");
+            .style("border-color", "whitesmoke");
 
         switch (selectedVar) {
             case 'Log GDP per capita':
                 d3.select("#b_gdp")
-                    .style("background-color", "lightgreen");
+                    .style("border-color", "dodgerblue");
                 break;
             case 'Social support':
                 d3.select("#b_ss")
-                    .style("background-color", "lightgreen");
+                    .style("border-color", "dodgerblue");
                 break;
             case 'Perceptions of corruption':
                 d3.select("#b_cur")
-                    .style("background-color", "lightgreen");
+                    .style("border-color", "dodgerblue");
                 break;
             case 'Freedom to make life choices':
                 d3.select("#b_fre")
-                    .style("background-color", "lightgreen");
+                    .style("border-color", "dodgerblue");
                 break;
             default:
             // code block
@@ -162,13 +179,15 @@ function createFeatureChart() {
         // Parse the Data
         d3.csv("world-happiness-report-cleaned.csv", function (data) {
 
-            data = data.filter(function (d) {
-                if (d['year'] == selectedYear) {
-                    return true;
-                } else {
-                    return false;
-                }
-            })
+            // data = data.filter(function (d) {
+            //     if (d['year'] == selectedYear) {
+            //         return true;
+            //     } else {
+            //         return false;
+            //     }
+            // })
+
+            data = data.filter(function (d) { return d['year'] == selectedYear });
 
 
             maxIndex = d3.max(data, function (d) { return +d['Life Ladder']; });
@@ -266,6 +285,14 @@ function createFeatureChart() {
 
                 .enter()
                 .append("circle")
+                .on("click", function (d) {
+                    tooltip
+                        .transition()
+                        .duration(200)
+                        .style("opacity", 0)
+                    showCountry(d['Country name'])
+                    console.log(d['Country name']);
+                })
                 .merge(dots)
                 .transition()
                 .duration(1000)
@@ -286,6 +313,7 @@ function createFeatureChart() {
                     else if (d['Life Ladder'] < 10) { return color("very-high") }
                 })
                 .style("stroke", "black")
+
 
 
             dots
