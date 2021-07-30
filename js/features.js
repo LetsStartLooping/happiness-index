@@ -92,15 +92,13 @@ function createFeatureChart() {
         .style("position", "absolute")
         .attr("class", "tooltip")
         .style("background-color", "white")
-        //     .style("border-color", "black")
+        // .style("border-color", "white")
         .style("border", "solid")
         .style("border-width", "1px")
         .style("border-radius", "5px")
         .style("padding", "10px")
         .style("color", "black")
-    //         .append("g")
-    //             .attr("transform",
-    //             "translate(" + margin.left + "," + margin.top + ")")
+
 
     // -2- Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
     var showTooltip = function (d) {
@@ -109,9 +107,16 @@ function createFeatureChart() {
             .duration(200)
         tooltip
             .style("opacity", 1)
-            .html("Happiness Index: " + + d['Life Ladder'])
+            .html("<p style=\"font-family: 'Ubuntu'; \"> Country: " + "<b>" + d['Country name'] + "</b>" +
+                "<br> Happiness Index: " + "<b>" + +d['Life Ladder'] + "</b>" +
+                "<br>" + selectedItem + ": " + "<b>" + +d[selectedItem] + "</b></p>")
             .style("top", (event.pageY + 20) + "px")
             .style("left", (event.pageX + 20) + "px")
+
+        d3.select(this)
+            .style("stroke", "black")
+            .style("stroke-width", 1.5)
+        // .attr("r", d.radius * 1.1)
     }
     var moveTooltip = function (d) {
         tooltip
@@ -124,8 +129,10 @@ function createFeatureChart() {
             .duration(200)
             .style("opacity", 0)
 
-        // u
-        // .style("stroke", "black")
+        d3.select(this)
+            .style("stroke", "black")
+            .style("stroke-width", 1)
+        // .attr("r", d.radius)
     }
 
     function update(selectedVar) {
@@ -290,8 +297,8 @@ function createFeatureChart() {
                         .transition()
                         .duration(200)
                         .style("opacity", 0)
+
                     showCountry(d['Country name'])
-                    console.log(d['Country name']);
                 })
                 .merge(dots)
                 .transition()

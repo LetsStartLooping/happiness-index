@@ -28,6 +28,9 @@ function createCountryChart(country) {
         updateCountry(selectedCountry)
     })
 
+
+
+
     function updateCountry(newCountry) {
 
         d3.select("#my_dataviz").selectAll('svg').remove();
@@ -196,7 +199,7 @@ function createCountryChart(country) {
                     .y(function (d) { return y(d.value + 0.5) }))
                 .attr("fill", "none")
                 .attr("stroke", "steelblue")
-                .attr("stroke-width", 2.5)
+                .attr("stroke-width", 2)
 
             var u1 = svg.selectAll(".lineTest1")
                 .datum(avg_data);
@@ -214,7 +217,7 @@ function createCountryChart(country) {
                     .y(function (d) { return y(d.value + 0.5) }))
                 .attr("fill", "none")
                 .attr("stroke", "orangered")
-                .attr("stroke-width", 2.5)
+                .attr("stroke-width", 2)
 
 
             // add the options to the button

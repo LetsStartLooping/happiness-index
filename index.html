@@ -91,12 +91,6 @@
 <body>
   <script>
 
-    // var firstTime = True
-
-    // if (firstTime == True) {
-    //   showSummary();
-    //   firstTime == False;
-    // }
 
     // let myBubbleChart = bubbleChart();
 
@@ -107,6 +101,15 @@
     sum_button.style("border-color", "whitesmoke");
     par_button.style("border-color", "whitesmoke");
     country_button.style("border-color", "whitesmoke");
+
+    var firstTime = true;
+
+    if (firstTime == true) {
+      showSummary();
+      firstTime == false;
+    }
+
+
 
     // Show Summary Screen
     function showSummary() {

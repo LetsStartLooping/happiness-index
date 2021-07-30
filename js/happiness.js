@@ -10,13 +10,64 @@ function createBubbleChart() {
 
         //       d3.selectAll("svg > *").remove();
         d3.select("#my_dataviz").selectAll("svg").remove();
-        myBubbleChart = bubbleChart();
         // recover the option that has been chosen
         selectedYear = d3.select(this).property("value")
         console.log(selectedYear);
         // run the updateChart function with this selected option
         bubbleChart();
     })
+
+    // -1- Create a tooltip div that is hidden by default:
+    var tooltip = d3.select("#my_dataviz")
+        .append("div")
+        .style("opacity", 0)
+        .style("position", "absolute")
+        .attr("class", "tooltip")
+        .style("background-color", "white")
+        // .style("border-color", "white")
+        .style("border", "solid")
+        .style("border-width", "1px")
+        .style("border-radius", "5px")
+        .style("padding", "10px")
+        .style("color", "black")
+
+
+    // -2- Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
+    var showTooltip = function (d) {
+        tooltip
+            .transition()
+            .duration(200)
+        tooltip
+            .style("opacity", 1)
+            .html("<p style=\"font-family: 'Ubuntu'; \"> Country: " + "<b>" + d['Country name'] + "</b>" +
+                "<br> Happiness Index: " + "<b>" + +d['Life Ladder'] + "</b></p>")
+            .style("top", (event.pageY + 20) + "px")
+            .style("left", (event.pageX + 20) + "px")
+
+        d3.select(this)
+            .style("stroke", "black")
+            .style("stroke-width", 2)
+            .attr("r", d.radius * 1.1)
+    }
+    var moveTooltip = function (d) {
+        tooltip
+            .style("top", (event.pageY + 20) + "px")
+            .style("left", (event.pageX + 20) + "px")
+    }
+    var hideTooltip = function (d) {
+        tooltip
+            .transition()
+            .duration(200)
+            .style("opacity", 0)
+
+        d3.select(this)
+            .style("stroke", "black")
+            .style("stroke-width", 1)
+            .attr("r", d.radius)
+
+        // u
+        // .style("stroke", "black")
+    }
 
     function bubbleChart() {
         d3.csv("world-happiness-report-cleaned.csv", function (rawData) {
@@ -149,6 +200,15 @@ function createBubbleChart() {
 
             bubbles = elements
                 .append('circle')
+                .on("click", function (d) {
+                    simulation.stop()
+                    tooltip
+                        .transition()
+                        .duration(200)
+                        .style("opacity", 0)
+                    showCountry(d['Country name'])
+                    console.log("Clicking")
+                })
                 .classed('bubble', true)
                 .attr('r', d => d.radius)
                 .style("stroke", "black")
@@ -163,6 +223,15 @@ function createBubbleChart() {
             // labels
             labels = elements
                 .append('text')
+                .on("click", function (d) {
+                    simulation.stop()
+                    tooltip
+                        .transition()
+                        .duration(200)
+                        .style("opacity", 0)
+                    showCountry(d['Country name'])
+                    console.log("Clicking")
+                })
                 .attr('dy', '.3em')
                 .style('text-anchor', 'middle')
                 .style('font-size', 10)
@@ -175,6 +244,18 @@ function createBubbleChart() {
                     else if (+d['Life Ladder'] < 10) { return d['Country name'] }
                 })
 
+
+            // labels
+            //     //     .append("g")
+            //     .on("mouseover", showTooltip)
+            //     .on("mousemove", moveTooltip)
+            //     .on("mouseleave", hideTooltip)
+
+            bubbles
+                //     .append("g")
+                .on("mouseover", showTooltip)
+                .on("mousemove", moveTooltip)
+                .on("mouseleave", hideTooltip)
 
 
 
