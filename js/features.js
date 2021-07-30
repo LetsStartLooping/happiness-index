@@ -109,7 +109,7 @@ function createFeatureChart() {
             .duration(200)
         tooltip
             .style("opacity", 1)
-            .html("Country: " + d['Country name'])
+            .html("Happiness Index: " + + d['Life Ladder'])
             .style("top", (event.pageY + 20) + "px")
             .style("left", (event.pageX + 20) + "px")
     }
