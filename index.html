@@ -24,9 +24,16 @@
 <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 
 <h1 style="margin-left: 60px; font-family: 'Ubuntu', sans-serif">World Happiness!</h1>
+<p style="width: 1024px; margin-left: 60px; font-family: 'Ubuntu', sans-serif; font-size: 18px;" id="headerText">With
+  this
+  narrative
+  visualisation we will try to see how Happiness varies among different countries over the period of time. Also what are
+  the influential paramters probabily impacts Happiness Index of a Country. We will mostly focus on <b>GDP per
+    Capita</b>, <b>Social Support</b>, <b>Precipitation of Corruption</b>, and <b>Freedom to make life choices</b></p>
+
 
 <!-- Buttons for Navigation -->
-<div style="margin-bottom: 30px; margin-left: 60px;" id="buttons">
+<div style="margin-bottom: 20px; margin-left: 60px;" id="buttons">
   <!--    <button onclick="update('Generosity')" id = ">Generosity</button> -->
   <button id="b_summary" style="font-family: 'Ubuntu'; font-size: 20px;">Summary</button>
   <button id="b_parameters" style="font-family: 'Ubuntu'; font-size: 20px;">Happiness Parameters</button>
@@ -35,7 +42,7 @@
 
 
 <!-- Buttons to Select the Attribute -->
-<div style="margin-bottom: 30px; margin-left: 60px;" id="par_buttons">
+<div style="margin-bottom: 20px; margin-left: 60px;" id="par_buttons">
   <!--    <button onclick="update('Generosity')" id = ">Generosity</button> -->
   <button id="b_gdp" style="font-family: 'Ubuntu'; font-size: 20px;">Log GDP per capita</button>
   <button id="b_ss" style="font-family: 'Ubuntu'; font-size: 20px;">Social Support</button>
@@ -57,7 +64,7 @@
 </div>
 <div style="width:25%; float:left" id="text_idv">
   <h2 style="font-family: 'Ubuntu', sans-serif" id="sideTextTitle">Great! Let's do it</h2>
-  <p style="font-family: 'Ubuntu', sans-serif; font-size: 15px;" id="sideText">Let's See if it works!</p>
+  <p style="font-family: 'Ubuntu', sans-serif; font-size: 18px;" id="sideText">Let's See if it works!</p>
 </div>
 </div>
 
@@ -118,9 +125,9 @@
       sum_button.style("border-color", "dodgerblue");
 
       d3.select("#my_dataviz").selectAll("svg").remove();
-      d3.select("#par_buttons").transition().duration(1000).style('opacity', 0);
-      d3.select("#chooseCountry").transition().duration(1000).style('opacity', 0);
-      d3.select("#text_idv").transition().duration(1000).style('opacity', 0);
+      d3.select("#par_buttons").transition().duration(firstTime ? 0 : 1000).style('opacity', 0);
+      d3.select("#chooseCountry").transition().duration(firstTime ? 0 : 1000).style('opacity', 0);
+      d3.select("#text_idv").transition().duration(firstTime ? 0 : 1000).style('opacity', 0);
       d3.select('#yearSlider').transition().duration(500).style('opacity', 1);
       d3.select('.sliderticks').transition().duration(500).style('opacity', 1);
       createBubbleChart();

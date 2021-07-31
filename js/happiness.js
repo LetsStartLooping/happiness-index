@@ -47,7 +47,7 @@ function createBubbleChart() {
         d3.select(this)
             .style("stroke", "black")
             .style("stroke-width", 2)
-            .attr("r", d.radius * 1.1)
+        // .attr("r", d.radius * 1.1)
     }
     var moveTooltip = function (d) {
         tooltip
@@ -63,7 +63,7 @@ function createBubbleChart() {
         d3.select(this)
             .style("stroke", "black")
             .style("stroke-width", 1)
-            .attr("r", d.radius)
+        // .attr("r", d.radius)
 
         // u
         // .style("stroke", "black")
@@ -115,9 +115,15 @@ function createBubbleChart() {
                 .domain(["1", "2", "3", "5", "99"])
                 .range(["#0074D9", "#7FDBFF", "#39CCCC", "#3D9970", "#AAAAAA"]);
 
-            const color = d3.scaleOrdinal()
+            // const color = d3.scaleOrdinal()
+            //     .domain(["very-low", "low", "medium", "high", "very-high"])
+            //     .range(["lightsteelblue", "skyblue", "lightsalmon", "orange", "yellow"])
+
+            // Color scale: Based on Happiness Index
+            var color = d3.scaleOrdinal()
                 .domain(["very-low", "low", "medium", "high", "very-high"])
-                .range(["lightsteelblue", "skyblue", "lightsalmon", "orange", "yellow"])
+                .range(["#243B81", "#62BCCC", "#F64F39", "#EE9323", "#FFFF00"])
+
 
             // size bubbles based on area
             const radiusScale = d3.scaleOrdinal()
@@ -130,9 +136,9 @@ function createBubbleChart() {
 
 
             function getRadius(life_ladder) {
-                if (life_ladder < 3.5) {
+                if (life_ladder < 4) {
                     return radiusScale("very-low")
-                } else if (life_ladder < 4.5) {
+                } else if (life_ladder < 5) {
                     return radiusScale("low")
                 } else if (life_ladder < 6) {
                     return radiusScale("medium")
@@ -213,8 +219,8 @@ function createBubbleChart() {
                 .attr('r', d => d.radius)
                 .style("stroke", "black")
                 .attr('fill', function (d) {
-                    if (+d['Life Ladder'] < 3.5) { return color("very-low") }
-                    else if (+d['Life Ladder'] < 4.5) { return color("low") }
+                    if (+d['Life Ladder'] < 4) { return color("very-low") }
+                    else if (+d['Life Ladder'] < 5) { return color("low") }
                     else if (+d['Life Ladder'] < 6) { return color("medium") }
                     else if (+d['Life Ladder'] < 7) { return color("high") }
                     else if (+d['Life Ladder'] < 10) { return color("very-high") }
@@ -234,11 +240,11 @@ function createBubbleChart() {
                 })
                 .attr('dy', '.3em')
                 .style('text-anchor', 'middle')
-                .style('font-size', 10)
+                .style('font-size', 12)
                 //       .text(d => d['Country name'])
                 .text(function (d) {
-                    if (+d['Life Ladder'] < 3.5) { return "" }
-                    else if (+d['Life Ladder'] < 4.5) { return "" }
+                    if (+d['Life Ladder'] < 4) { return "" }
+                    else if (+d['Life Ladder'] < 5) { return "" }
                     else if (+d['Life Ladder'] < 6) { return "" }
                     else if (+d['Life Ladder'] < 7) { return "" }
                     else if (+d['Life Ladder'] < 10) { return d['Country name'] }

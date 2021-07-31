@@ -59,6 +59,7 @@ function createFeatureChart() {
     textTitle = d3.select('#sideTextTitle');
     sideText = d3.select('#sideText');
 
+
     var ss_button = d3.select('#b_ss');
     ss_button.on("click", function (d) {
         sideText.text(ss_text)
@@ -139,6 +140,7 @@ function createFeatureChart() {
 
 
         textTitle.text(selectedVar)
+        sideText.text(gdp_text)
 
         //     clearChart();
 
