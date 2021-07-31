@@ -23,82 +23,88 @@
 
 <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 
-<h1 style="margin-left: 60px; font-family: 'Ubuntu', sans-serif">World Happiness!</h1>
-<p style="width: 1024px; margin-left: 60px; font-family: 'Ubuntu', sans-serif; font-size: 18px;" id="headerText">With
-  this
-  narrative
-  visualisation we will try to see how Happiness varies among different countries over the period of time. Also what are
-  the influential paramters probabily impacts Happiness Index of a Country. We will mostly focus on <b>GDP per
-    Capita</b>, <b>Social Support</b>, <b>Precipitation of Corruption</b>, and <b>Freedom to make life choices</b></p>
+<body style="background-color:whitesmoke;">
+
+  <h1 style=" margin-left: 60px; font-family: 'Ubuntu' , sans-serif">World Happiness!</h1>
+  <p style="width: 1024px; margin-left: 60px; font-family: 'Ubuntu', sans-serif; font-size: 18px;" id="headerText">With
+    this
+    narrative
+    visualisation we will try to see how Happiness varies among different countries over the period of time. Also what
+    are
+    the influential paramters probabily impacts Happiness Index of a Country. We will mostly focus on <b>GDP per
+      Capita</b>, <b>Social Support</b>, <b>Precipitation of Corruption</b>, and <b>Freedom to make life choices</b></p>
 
 
-<!-- Buttons for Navigation -->
-<div style="margin-bottom: 20px; margin-left: 60px;" id="buttons">
-  <!--    <button onclick="update('Generosity')" id = ">Generosity</button> -->
-  <button id="b_summary" style="font-family: 'Ubuntu'; font-size: 20px;">Summary</button>
-  <button id="b_parameters" style="font-family: 'Ubuntu'; font-size: 20px;">Happiness Parameters</button>
-  <button id="b_country" style="font-family: 'Ubuntu'; font-size: 20px;">Happiness per Country</button>
-</div>
-
-
-<!-- Buttons to Select the Attribute -->
-<div style="margin-bottom: 20px; margin-left: 60px;" id="par_buttons">
-  <!--    <button onclick="update('Generosity')" id = ">Generosity</button> -->
-  <button id="b_gdp" style="font-family: 'Ubuntu'; font-size: 20px;">Log GDP per capita</button>
-  <button id="b_ss" style="font-family: 'Ubuntu'; font-size: 20px;">Social Support</button>
-  <button id="b_cur" style="font-family: 'Ubuntu'; font-size: 20px;">Corruption</button>
-  <button id="b_fre" style="font-family: 'Ubuntu'; font-size: 20px;">Freedom to make life
-    choices</button>
-</div>
-
-<!-- Create a div where the graph will take place -->
-
-<div id="tooltip"></div>
-
-
-
-<div style="width:100%"></div>
-<div style="width:70%; float:left" id="my_dataviz"></div>
-<div>
-  <select style="font-family: 'Ubuntu'; font-size: 20px; float:left" id="chooseCountry"></select>
-</div>
-<div style="width:25%; float:left" id="text_idv">
-  <h2 style="font-family: 'Ubuntu', sans-serif" id="sideTextTitle">Great! Let's do it</h2>
-  <p style="font-family: 'Ubuntu', sans-serif; font-size: 18px;" id="sideText">Let's See if it works!</p>
-</div>
-</div>
-
-
-
-<!-- Initialize a select button -->
-
-
-<!-- Year Slector Slider -->
-<div class="range" style="margin-left: 60px;">
-
-  <input class="slider" type="range" min="2011" max="2020" step="1" id="yearSlider">
-
-  <div class="sliderticks">
-    <p>2011</p>
-    <p>2012</p>
-    <p>2013</p>
-    <p>2014</p>
-    <p>2015</p>
-    <p>2016</p>
-    <p>2017</p>
-    <p>2018</p>
-    <p>2019</p>
-    <p>2020</p>
+  <!-- Buttons for Navigation -->
+  <div style="margin-bottom: 20px; margin-left: 60px;" id="buttons">
+    <!--    <button onclick="update('Generosity')" id = ">Generosity</button> -->
+    <button id="b_summary" style="font-family: 'Ubuntu'; font-size: 20px;">Summary</button>
+    <button id="b_parameters" style="font-family: 'Ubuntu'; font-size: 20px;">Happiness Parameters</button>
+    <button id="b_country" style="font-family: 'Ubuntu'; font-size: 20px;">Happiness per Country</button>
   </div>
 
-</div>
+
+  <!-- Buttons to Select the Attribute -->
+  <div style="margin-bottom: 20px; margin-left: 60px;" id="par_buttons">
+    <!--    <button onclick="update('Generosity')" id = ">Generosity</button> -->
+    <button id="b_gdp" style="font-family: 'Ubuntu'; font-size: 20px;">Log GDP per capita</button>
+    <button id="b_ss" style="font-family: 'Ubuntu'; font-size: 20px;">Social Support</button>
+    <button id="b_cur" style="font-family: 'Ubuntu'; font-size: 20px;">Corruption</button>
+    <button id="b_fre" style="font-family: 'Ubuntu'; font-size: 20px;">Freedom to make life
+      choices</button>
+  </div>
+
+  <!-- Create a div where the graph will take place -->
+
+  <div id="tooltip"></div>
 
 
 
-<body>
+  <div style="width:100%">
+
+
+    <div style="width:25%; float:left; margin-left: 60px;" id="text_idv">
+      <select style="font-family: 'Ubuntu'; font-size: 20px; float:left" id="chooseCountry"></select>
+      <br>
+      <h2 style="color: dodgerblue;font-family: 'Ubuntu', sans-serif;" id="sideTextTitle">Great! Let's do
+        it</h2>
+      <p style="font-family: 'Ubuntu', sans-serif; font-size: 18px;" id="sideText">Let's See if it works!</p>
+    </div>
+    <div style="width:70%; float:left">
+      <div id="my_dataviz"></div>
+      <!-- Year Slector Slider -->
+      <div class="range" style="margin-left: 60px;">
+
+        <input class="slider" type="range" min="2011" max="2020" step="1" id="yearSlider">
+
+        <div class="sliderticks">
+          <p>2011</p>
+          <p>2012</p>
+          <p>2013</p>
+          <p>2014</p>
+          <p>2015</p>
+          <p>2016</p>
+          <p>2017</p>
+          <p>2018</p>
+          <p>2019</p>
+          <p>2020</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Initialize a select button -->
+
+
+
   <script>
 
 
+    const chart_height = 720
+    const chart_width = 720
     // let myBubbleChart = bubbleChart();
 
     var sum_button = d3.select('#b_summary');
@@ -139,6 +145,8 @@
       d3.select("#text_idv").transition().duration(1000).style('opacity', 1);
       d3.select('#yearSlider').transition().duration(500).style('opacity', 1);
       d3.select('.sliderticks').transition().duration(500).style('opacity', 1);
+      d3.select('#sideTextTitle').transition().duration(500).style('opacity', 1);
+      d3.select('#sideText').transition().duration(500).style('opacity', 1);
       d3.select("#my_dataviz").selectAll("svg").remove();
 
       country_button.style("border-color", "whitesmoke");
@@ -162,9 +170,11 @@
     function showCountry(country) {
       d3.select("#par_buttons").transition().duration(1000).style('opacity', 0);
       d3.select("#chooseCountry").transition().duration(1000).style('opacity', 1);
-      d3.select("#text_idv").transition().duration(1000).style('opacity', 1);
+
       d3.select('#yearSlider').transition().duration(500).style('opacity', 0);
       d3.select('.sliderticks').transition().duration(500).style('opacity', 0);
+      d3.select('#sideTextTitle').transition().duration(500).style('opacity', 0);
+      d3.select('#sideText').transition().duration(500).style('opacity', 0);
       d3.select("#my_dataviz").selectAll("svg").remove();
 
       par_button.style("border-color", "whitesmoke");

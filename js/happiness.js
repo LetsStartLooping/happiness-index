@@ -77,8 +77,8 @@ function createBubbleChart() {
 
 
 
-            const width = 1024;
-            const height = 720;
+            const width = chart_width;
+            const height = chart_height;
 
             // location to centre the bubbles
             const centre = { x: width / 2, y: height / 2 };
