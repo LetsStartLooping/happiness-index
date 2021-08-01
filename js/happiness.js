@@ -247,7 +247,11 @@ function createBubbleChart() {
                 })
                 .attr('dy', '.3em')
                 .style('text-anchor', 'middle')
-                .style('font-size', 12)
+                .style('font-size', function (d) {
+                    if (d['Country name'].length < 10) { return 10 }
+                    else { return 8 }
+
+                })
                 //       .text(d => d['Country name'])
                 .text(function (d) {
                     if (+d['Life Ladder'] < 4) { return "" }
