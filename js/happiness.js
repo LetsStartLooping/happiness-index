@@ -134,7 +134,8 @@ function createBubbleChart() {
             // size bubbles based on area
             const radiusScale = d3.scaleOrdinal()
                 .domain(["very-low", "low", "medium", "high", "very-high"])
-                .range([3, 10, 20, 30, 40])
+                // .range([3, 10, 20, 28, 35])
+                .range([5, 10, 15, 20, 30])
 
 
 
