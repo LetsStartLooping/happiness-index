@@ -8,9 +8,8 @@ function createBubbleChart() {
 
     yearSlider.on("change", function (d) {
 
-        //       d3.selectAll("svg > *").remove();
         d3.select("#my_dataviz").selectAll("svg").remove();
-        // recover the option that has been chosen
+        // Get the selected value of the Year
         selectedYear = d3.select(this).property("value")
         console.log(selectedYear);
         // run the updateChart function with this selected option
@@ -73,7 +72,7 @@ function createBubbleChart() {
     sideText_1.text(side_text_1)
 
     sideText = d3.select('#sideText');
-    sideText.text("This Bubble chart shows a Summary of wrold happiness across the world for a given year. Each bubble represents one country. Year can be changed from the slider at the bottom of the chart")
+    sideText.text("This Bubble chart shows a summary of world happiness across the world for a given year. Each bubble represents one country and Year can be changed from the slider at the bottom of the chart")
 
     function bubbleChart() {
         d3.csv("world-happiness-report-cleaned.csv", function (rawData) {

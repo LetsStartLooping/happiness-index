@@ -1,11 +1,11 @@
 
 var sideTextTitles = ["Log GDP per Capita", "Social Support", "Corruption", "Freedom to make Life Choices"]
-var gdp_text = "This chart shows relationship between GDP per Capita and Happiness Index for different countries. As overall trend shows here Happiness Index tend to increase as GDP per Capita Increases."
+var gdp_text = "This chart shows relationship between Log GDP per Capita and Happiness Index for different countries. As overall trend shows here, Happiness Index tend to increase as GDP per Capita Increases."
 var ss_text = "This chart shows relationship between Happiness Index and Social Support for different countries. As overall trend shows here Happiness Index tend to increase as Social Support Increases."
 var cur_text = "This chart shows relationship between Happiness Index and Perceptions of Curruption for different countries. As overall trend shows here Happiness Index tend to increase as Perceptions of Curruption Decreases."
 var fre_text = "This chart shows relationship between Freedom to make life choices and Happiness Index for different countries. As overall trend shows here Happiness Index tend to increase as Freedom to make life choices Increases."
 
-var side_text_1 = "Bigger the circle means higher the happiness level. Click on any of the country circle to drill-down to Country level details. Also, their are tooltips to provide more details for each circle. Just hover the mouse to any one of those"
+var side_text_1 = "Bigger the circle means higher the happiness level. Click on any of the country circle to drill-down to country level details. Also, there are tooltips to provide more details for each circle, just hover the mouse to any one of those for details."
 
 function createFeatureChart() {
     var selectedYear = 2018

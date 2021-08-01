@@ -146,7 +146,7 @@ function createCountryChart(country) {
             const annotations = [
                 {
                     note: {
-                        label: "This line shows the happiness for " + newCountry + ". and this is the point of highest happiness level",
+                        label: "",
                         title: newCountry
                     },
                     x: x(max_year),
@@ -156,7 +156,7 @@ function createCountryChart(country) {
                 },
                 {
                     note: {
-                        label: "This line shows the average happiness of the world",
+                        label: "",
                         title: "World Average"
                     },
                     x: x(avg_data[1].key),
