@@ -62,7 +62,7 @@
   <div style="width:100%">
 
 
-    <div style="width:25%; float:left; margin-left: 60px;" id="text_idv">
+    <div style="width:20%; float:left; margin-left: 60px;" id="text_idv">
       <select style="font-family: 'Ubuntu'; font-size: 20px; float:left" id="chooseCountry"></select>
       <br>
       <h2 style="font-family: 'Ubuntu', sans-serif;" id="sideTextTitle">Great! Let's do
@@ -92,13 +92,13 @@
         </div>
 
       </div>
-
+      <p style="margin-left: 60px; margin-top: 20px; font-family: 'Ubuntu', sans-serif; font-size: 12px;"> The data for
+        this visualisation
+        is
+        taken from https://www.kaggle.com/ajaypalsinghlo/world-happiness-report-2021</p>
     </div>
   </div>
-  <p style="margin-left: 60px; margin-top: 20px; font-family: 'Ubuntu', sans-serif; font-size: 12px;"> The data for
-    this visualisation
-    is
-    taken from https://www.kaggle.com/ajaypalsinghlo/world-happiness-report-2021</p>
+
 
 
   <!-- Initialize a select button -->
@@ -111,6 +111,12 @@
     const chart_height = 600
     const chart_width = 900
     // let myBubbleChart = bubbleChart();
+
+    var svg = d3.select("div#container")
+      .append("svg")
+      .attr("preserveAspectRatio", "xMinYMin meet")
+      .attr("viewBox", "0 0 300 300")
+      .classed("svg-content", true);
 
     var sum_button = d3.select('#b_summary');
     var par_button = d3.select('#b_parameters');
@@ -209,6 +215,11 @@
     function display(data) {
       myBubbleChart('#my_dataviz', data);
     }
+
+    function redraw() {
+      console.log("Redraw")
+    }
+    window.addEventListener("resize", redraw);
 
     // 
 
