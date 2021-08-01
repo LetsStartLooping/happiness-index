@@ -69,9 +69,11 @@ function createBubbleChart() {
     }
 
     sideText_1 = d3.select('#sideText_1');
+    textTitle = d3.select('#sideTextTitle');
     sideText_1.text(side_text_1)
 
     sideText = d3.select('#sideText');
+
     sideText.text("This Bubble chart shows a summary of world happiness across the world for a given year. Each bubble represents one country and Year can be changed from the slider at the bottom of the chart")
 
     function bubbleChart() {
@@ -97,7 +99,7 @@ function createBubbleChart() {
             let labels = null;
             let nodes = [];
 
-
+            textTitle.text(selectedYear)
 
             // charge is dependent on size of the bubble, so bigger towards the middle
             function charge(d) {

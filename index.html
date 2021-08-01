@@ -127,6 +127,7 @@
     country_button.style("border-color", "whitesmoke");
 
     var firstTime = true;
+    var fistTime_par = true;
 
     if (firstTime == true) {
       showSummary();
@@ -148,7 +149,7 @@
       // d3.select("#chooseCountry").transition().duration(firstTime ? 0 : 1000).style('opacity', 0);
       // d3.select("#text_idv").transition().duration(firstTime ? 0 : 1000).style('opacity', 0);
       d3.select('#sideText_1').transition().duration(500).style('opacity', 1);
-      d3.select('#sideTextTitle').transition().duration(500).style('opacity', 0);
+      d3.select('#sideTextTitle').transition().duration(1000).style('opacity', 1);
       d3.select('#sideText').transition().duration(500).style('opacity', 1);
       d3.select('#yearSlider').transition().duration(500).style('opacity', 1);
       d3.select('.sliderticks').transition().duration(500).style('opacity', 1);
@@ -171,6 +172,7 @@
       country_button.style("border-color", "whitesmoke");
       sum_button.style("border-color", "whitesmoke");
       par_button.style("border-color", "dodgerblue");
+      fistTime_par = true;
       createFeatureChart();
     }
 

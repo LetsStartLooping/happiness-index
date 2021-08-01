@@ -1,5 +1,5 @@
 country_side_text_1 = "This chart shows Happiness Level over the years for "
-country_side_text_2 = " with a green line and same is against the average Happiness Level for the World (blue line). For some of the Countries data is not available for all the years, that is why some of these lines could be shorter"
+country_side_text_2 = " with a green line and same is against the average Happiness Level for the World (blue line). For some of the Countries data is not available for all the years, that is why some of these lines could be shorter."
 
 function createCountryChart(country) {
     // set the dimensions and margins of the graph
@@ -162,7 +162,7 @@ function createCountryChart(country) {
                     x: x(avg_data[1].key),
                     y: y(avg_data[1].value),
                     dy: 40,
-                    dx: -60
+                    dx: -20
                 }
             ]
 

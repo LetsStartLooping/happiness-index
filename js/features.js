@@ -1,11 +1,11 @@
 
 var sideTextTitles = ["Log GDP per Capita", "Social Support", "Corruption", "Freedom to make Life Choices"]
-var gdp_text = "This chart shows relationship between Log GDP per Capita and Happiness Index for different countries. As overall trend shows here, Happiness Index tend to increase as GDP per Capita Increases."
-var ss_text = "This chart shows relationship between Happiness Index and Social Support for different countries. As overall trend shows here Happiness Index tend to increase as Social Support Increases."
-var cur_text = "This chart shows relationship between Happiness Index and Perceptions of Curruption for different countries. As overall trend shows here Happiness Index tend to increase as Perceptions of Curruption Decreases."
-var fre_text = "This chart shows relationship between Freedom to make life choices and Happiness Index for different countries. As overall trend shows here Happiness Index tend to increase as Freedom to make life choices Increases."
+var gdp_text = "This chart shows relationship between Log GDP per Capita (y-axis) and Happiness Index (x-axis) for different countries. As overall trend shows here, Happiness Index tend to increase as GDP per Capita Increases."
+var ss_text = "This chart shows relationship between Happiness Index (x-axis) and Social Support (y-axis) for different countries. As overall trend shows here Happiness Index tend to increase as Social Support Increases."
+var cur_text = "This chart shows relationship between Happiness Index (x-axis) and Perceptions of Curruption (y-axis) for different countries. As overall trend shows here Happiness Index tend to increase as Perceptions of Curruption Decreases."
+var fre_text = "This chart shows relationship between Freedom to make life choices (y-axis) and Happiness Index (x-axis) for different countries. As overall trend shows here Happiness Index tend to increase as Freedom to make life choices Increases."
 
-var side_text_1 = "Bigger the circle means higher the happiness level. Click on any of the country circle to drill-down to country level details. Also, there are tooltips to provide more details for each circle, just hover the mouse to any one of those for details."
+var side_text_1 = "Bigger the circle means higher the happiness level and each happiness level has different colors (yellow being the highest happiness level). Click on any of the country circle to drill-down to country level details. Also, there are tooltips to provide more details for each circle, just hover the mouse to any one of those for details."
 
 function createFeatureChart() {
     var selectedYear = 2018
@@ -142,18 +142,17 @@ function createFeatureChart() {
         d3.select(this)
             .style("stroke", "black")
             .style("stroke-width", 1)
-        // .attr("r", d.radius)
     }
 
     function update(selectedVar) {
 
 
-        textTitle.text(selectedVar)
-        sideText.text(gdp_text)
+        textTitle.text(selectedVar + " - " + selectedYear)
 
-        //     clearChart();
-
-        //     d3.select('.annotation-group').remove()
+        if (fistTime_par == true) {
+            sideText.text(gdp_text)
+            fistTime_par = false;
+        }
 
         d3.select("#my_dataviz").selectAll('.annotation-group').remove();
 
@@ -197,16 +196,7 @@ function createFeatureChart() {
         // Parse the Data
         d3.csv("world-happiness-report-cleaned.csv", function (data) {
 
-            // data = data.filter(function (d) {
-            //     if (d['year'] == selectedYear) {
-            //         return true;
-            //     } else {
-            //         return false;
-            //     }
-            // })
-
             data = data.filter(function (d) { return d['year'] == selectedYear });
-
 
             maxIndex = d3.max(data, function (d) { return +d['Life Ladder']; });
             console.log(maxIndex)
@@ -238,6 +228,7 @@ function createFeatureChart() {
                 d['Perceptions of corruption'] = +d['Perceptions of corruption'];
                 d['Healthy life expectancy at birth'] = +d['Healthy life expectancy at birth'];
                 d['Generosity'] = +d['Generosity'];
+                d['Social support'] = +d['Social support'];
                 d['year'] = +d['year'];
                 d['Life Ladder'] = +d['Life Ladder'];
                 if (maxIndex == d['Life Ladder']) {
@@ -317,9 +308,9 @@ function createFeatureChart() {
                 .attr("cx", function (d) { return x(d['Life Ladder']); })
                 .attr("cy", function (d) { return y(d[selectedVar]); })
                 .attr("r", function (d) {
-                    if (d['Life Ladder'] < 3.5) { return 3 }
-                    else if (d['Life Ladder'] < 4.5) { return 4.5 }
-                    else if (d['Life Ladder'] < 6) { return 6 }
+                    if (d['Life Ladder'] < 3.5) { return 4 }
+                    else if (d['Life Ladder'] < 4.5) { return 5 }
+                    else if (d['Life Ladder'] < 6) { return 6.5 }
                     else if (d['Life Ladder'] < 7) { return 7.5 }
                     else { return 9 }
                 })
