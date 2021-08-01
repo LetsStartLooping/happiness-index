@@ -1,9 +1,11 @@
+country_side_text_1 = "This chart shows Happiness Level over the years for "
+country_side_text_2 = " with a green line and same is against the average Happiness Level for the World (blue line). For some of the Countries data is not available for all the years, that is why some of these lines could be shorter"
 
 function createCountryChart(country) {
     // set the dimensions and margins of the graph
     var margin = { top: 10, right: 30, bottom: 30, left: 60 },
-        width = 1024 - margin.left - margin.right,
-        height = 720 - margin.top - margin.bottom;
+        width = chart_width - margin.left - margin.right,
+        height = chart_height - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
     var svg = d3.select("#my_dataviz")
@@ -14,6 +16,7 @@ function createCountryChart(country) {
         .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
 
+    sideText = d3.select('#sideText');
 
     // var country = 'Switzerland';
     console.log("-------")
@@ -42,6 +45,8 @@ function createCountryChart(country) {
             .attr("transform",
                 "translate(" + margin.left + "," + margin.top + ")");
 
+
+        sideText.text(country_side_text_1 + newCountry + country_side_text_2)
         //Read the data
         d3.csv("world-happiness-report-cleaned.csv", function (data) {
 
@@ -82,6 +87,13 @@ function createCountryChart(country) {
 
             });
 
+            country_data = country_data.sort(function (a, b) {
+                return d3.descending(+a.value, +b.value);
+
+            });
+
+            const max_year = country_data[0].key;
+
             country_data.sort(function (a, b) {
                 return d3.descending(+a.key, +b.key);
 
@@ -94,7 +106,7 @@ function createCountryChart(country) {
                 .range([0, width]);
             svg.append("g")
                 .attr("transform", "translate(0," + height + ")")
-                .call(d3.axisBottom(x).tickFormat(d3.format('')).ticks(5));
+                .transition().duration(1000).call(d3.axisBottom(x).tickFormat(d3.format('')).ticks(5));
 
             // Get minimum value
             min_country = d3.min(country_data, function (d) { return +d.value; })
@@ -119,12 +131,13 @@ function createCountryChart(country) {
             }
 
 
+
             // Add Y axis
             var y = d3.scaleLinear()
                 .domain([min_y - 0.5, max_y + 0.5])
                 .range([height, 0]);
             svg.append("g")
-                .call(d3.axisLeft(y));
+                .transition().duration(1000).call(d3.axisLeft(y));
 
 
 
@@ -133,23 +146,23 @@ function createCountryChart(country) {
             const annotations = [
                 {
                     note: {
-                        label: "",
+                        label: "This line shows the happiness for " + newCountry + ". and this is the point of highest happiness level",
                         title: newCountry
                     },
-                    x: 100,
-                    y: 100,
-                    dy: 110,
-                    dx: 40
+                    x: x(max_year),
+                    y: y(max_country),
+                    dy: 60,
+                    dx: (max_year < 2016 ? 40 : -40)
                 },
                 {
                     note: {
-                        label: "",
+                        label: "This line shows the average happiness of the world",
                         title: "World Average"
                     },
-                    x: 200,
-                    y: 200,
-                    dy: -40,
-                    dx: 100
+                    x: x(avg_data[1].key),
+                    y: y(avg_data[1].value),
+                    dy: 40,
+                    dx: -60
                 }
             ]
 
@@ -159,65 +172,31 @@ function createCountryChart(country) {
 
 
             // Draw the line
-            svg.append("path")
+            l1 = svg.append("path")
                 .datum(avg_data)
-                .transition()
-                .duration(1000)
+                // .transition()
+                // .duration(1000)
                 .attr("fill", "none")
                 .attr("stroke", "steelblue")
-                .attr("stroke-width", 5)
+                .attr("stroke-width", 3)
+                .style('opacity', 0)
                 .attr("d", d3.line()
                     .x(function (d) { return x(d.key) })
                     .y(function (d) { return y(d.value) })
                 )
 
-            svg.append("path")
+            l2 = svg.append("path")
                 .datum(country_data)
                 .attr("fill", "none")
                 .attr("stroke", "green")
-                .attr("stroke-width", 5)
-                .transition()
-                .duration(1000)
+                .attr("stroke-width", 3)
+                .style('opacity', 0)
+                // .transition()
+                // .duration(1000)
                 .attr("d", d3.line()
                     .x(function (d) { return x(d.key) })
                     .y(function (d) { return y(d.value) })
                 )
-
-            var u = svg.selectAll(".lineTest")
-                .datum(country_data);
-
-            // Updata the line
-            u
-                .enter()
-                .append("path")
-                .attr("class", "lineTest")
-                .merge(u)
-                .transition()
-                .duration(3000)
-                .attr("d", d3.line()
-                    .x(function (d) { return x(d.key) })
-                    .y(function (d) { return y(d.value + 0.5) }))
-                .attr("fill", "none")
-                .attr("stroke", "steelblue")
-                .attr("stroke-width", 2)
-
-            var u1 = svg.selectAll(".lineTest1")
-                .datum(avg_data);
-
-            // Updata the line
-            u1
-                .enter()
-                .append("path")
-                .attr("class", "lineTest1")
-                .merge(u1)
-                .transition()
-                .duration(3000)
-                .attr("d", d3.line()
-                    .x(function (d) { return x(d.key) })
-                    .y(function (d) { return y(d.value + 0.5) }))
-                .attr("fill", "none")
-                .attr("stroke", "orangered")
-                .attr("stroke-width", 2)
 
 
             // add the options to the button
@@ -229,8 +208,17 @@ function createCountryChart(country) {
                 .text(function (d) { return d; }) // text showed in the menu
                 .attr("value", function (d) { return d; })
 
-            d3.select("#chooseCountry").property("selected", newCountry)
+            d3.select("#chooseCountry").property("value", newCountry)
+            d3.select("#chooseCountry").transition().duration(1000).style('opacity', 1);
 
+
+            l1.transition()
+                .duration(1000)
+                .style('opacity', 1)
+
+            l2.transition()
+                .duration(1000)
+                .style('opacity', 1)
 
             // Annotations
             svg

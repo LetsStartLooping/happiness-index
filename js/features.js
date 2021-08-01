@@ -1,9 +1,11 @@
 
 var sideTextTitles = ["Log GDP per Capita", "Social Support", "Corruption", "Freedom to make Life Choices"]
-var gdp_text = "This This chart shows relationship between GDP per Capita and Happiness Index for different countries. As overall trend shows here Happiness Index tend to increase as GDP per Capita Increases."
+var gdp_text = "This chart shows relationship between GDP per Capita and Happiness Index for different countries. As overall trend shows here Happiness Index tend to increase as GDP per Capita Increases."
 var ss_text = "This chart shows relationship between Happiness Index and Social Support for different countries. As overall trend shows here Happiness Index tend to increase as Social Support Increases."
 var cur_text = "This chart shows relationship between Happiness Index and Perceptions of Curruption for different countries. As overall trend shows here Happiness Index tend to increase as Perceptions of Curruption Decreases."
 var fre_text = "This chart shows relationship between Freedom to make life choices and Happiness Index for different countries. As overall trend shows here Happiness Index tend to increase as Freedom to make life choices Increases."
+
+var side_text_1 = "Bigger the circle means higher the happiness level. Click on any of the country circle to drill-down to Country level details. Also, their are tooltips to provide more details for each circle. Just hover the mouse to any one of those"
 
 function createFeatureChart() {
     var selectedYear = 2018
@@ -61,6 +63,8 @@ function createFeatureChart() {
 
     textTitle = d3.select('#sideTextTitle');
     sideText = d3.select('#sideText');
+    sideText_1 = d3.select('#sideText_1');
+    sideText_1.text(side_text_1)
 
 
     var ss_button = d3.select('#b_ss');
@@ -87,6 +91,8 @@ function createFeatureChart() {
         sideText.text(fre_text)
         update('Freedom to make life choices')
     })
+
+
 
 
     // -1- Create a tooltip div that is hidden by default:

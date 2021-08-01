@@ -69,6 +69,12 @@ function createBubbleChart() {
         // .style("stroke", "black")
     }
 
+    sideText_1 = d3.select('#sideText_1');
+    sideText_1.text(side_text_1)
+
+    sideText = d3.select('#sideText');
+    sideText.text("This Bubble chart shows a Summary of wrold happiness across the world for a given year. Each bubble represents one country. Year can be changed from the slider at the bottom of the chart")
+
     function bubbleChart() {
         d3.csv("world-happiness-report-cleaned.csv", function (rawData) {
             // bubbleChart creation function; instantiate new bubble chart given a DOM element to display it in and a dataset to visualise

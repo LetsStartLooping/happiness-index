@@ -5,11 +5,11 @@
 .slider {
   -webkit-appearance: none;
   appearance: none;
-  width: 1000px;
+  width: 900px;
   height: 10px;
-  background: #D3D3D3;
+  background: gold;
   outline: none;
-  opacity: 0.7;
+  opacity: 0.1;
   -webkit-transition: .2s;
   transition: opacity .2s;
 }
@@ -22,8 +22,8 @@
   -webkit-appearance: none;
   appearance: none;
   width: 20px;
-  height: 10px;
-  background: #44CCBB;
+  height: 12px;
+  background: darkgreen;
   cursor: pointer;
 } 
 
@@ -35,7 +35,7 @@
 }
 
 .sliderticks {
-    width: 1000px;
+    width: 900px;
   display: flex;
   justify-content: space-between;
   padding: 0 10px;

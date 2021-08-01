@@ -9,9 +9,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Ubuntu:wght@300&display=swap"
     rel="stylesheet">
 
-  <script src="js/features.js" type="text/javascript"></script>
-  <script src="js/happiness.js" type="text/javascript"></script>
-  <script src="js/country.js" type="text/javascript"></script>
+  <script src="/js/features.js" type="text/javascript"></script>
+  <script src="/js/happiness.js" type="text/javascript"></script>
+  <script src="/js/country.js" type="text/javascript"></script>
 
 </head>
 
@@ -27,12 +27,10 @@
 
   <h1 style=" margin-left: 60px; font-family: 'Ubuntu' , sans-serif">World Happiness!</h1>
   <p style="width: 1024px; margin-left: 60px; font-family: 'Ubuntu', sans-serif; font-size: 18px;" id="headerText">With
-    this
-    narrative
-    visualisation we will try to see how Happiness varies among different countries over the period of time. Also what
-    are
-    the influential paramters probabily impacts Happiness Index of a Country. We will mostly focus on <b>GDP per
-      Capita</b>, <b>Social Support</b>, <b>Precipitation of Corruption</b>, and <b>Freedom to make life choices</b></p>
+    this narrative visualisation we will try to see how Happiness varies among different countries over the period of
+    time. Also what are the influential paramters probabily impacts Happiness Index of a Country. We will mostly focus
+    on <b>GDP per Capita</b>, <b>Social Support</b>, <b>Precipitation of Corruption</b>, and <b>Freedom to make life
+      choices</b></p>
 
 
   <!-- Buttons for Navigation -->
@@ -66,14 +64,16 @@
     <div style="width:25%; float:left; margin-left: 60px;" id="text_idv">
       <select style="font-family: 'Ubuntu'; font-size: 20px; float:left" id="chooseCountry"></select>
       <br>
-      <h2 style="color: dodgerblue;font-family: 'Ubuntu', sans-serif;" id="sideTextTitle">Great! Let's do
+      <h2 style="font-family: 'Ubuntu', sans-serif;" id="sideTextTitle">Great! Let's do
         it</h2>
       <p style="font-family: 'Ubuntu', sans-serif; font-size: 18px;" id="sideText">Let's See if it works!</p>
+      <p style="font-family: 'Ubuntu', sans-serif; font-size: 18px; margin-top: 20px" id="sideText_1">Let's See if it
+        works!</p>
     </div>
-    <div style="width:70%; float:left">
+    <div style="width:70%; float:left; margin-left: 20px">
       <div id="my_dataviz"></div>
       <!-- Year Slector Slider -->
-      <div class="range" style="margin-left: 60px;">
+      <div class="range" style="margin-left: 60px; margin-bottom: 30px;">
 
         <input class="slider" type="range" min="2011" max="2020" step="1" id="yearSlider">
 
@@ -91,9 +91,13 @@
         </div>
 
       </div>
+
     </div>
   </div>
-
+  <p style="margin-left: 60px; margin-top: 20px; font-family: 'Ubuntu', sans-serif; font-size: 12px;"> The data for
+    this visualisation
+    is
+    taken from https://www.kaggle.com/ajaypalsinghlo/world-happiness-report-2021</p>
 
 
   <!-- Initialize a select button -->
@@ -103,8 +107,8 @@
   <script>
 
 
-    const chart_height = 720
-    const chart_width = 720
+    const chart_height = 600
+    const chart_width = 900
     // let myBubbleChart = bubbleChart();
 
     var sum_button = d3.select('#b_summary');
@@ -120,6 +124,8 @@
     if (firstTime == true) {
       showSummary();
       firstTime == false;
+      d3.select('#sideTextTitle').style('opacity', 0);
+      d3.select("#chooseCountry").style('opacity', 0);
     }
 
 
@@ -132,10 +138,14 @@
 
       d3.select("#my_dataviz").selectAll("svg").remove();
       d3.select("#par_buttons").transition().duration(firstTime ? 0 : 1000).style('opacity', 0);
-      d3.select("#chooseCountry").transition().duration(firstTime ? 0 : 1000).style('opacity', 0);
-      d3.select("#text_idv").transition().duration(firstTime ? 0 : 1000).style('opacity', 0);
+      // d3.select("#chooseCountry").transition().duration(firstTime ? 0 : 1000).style('opacity', 0);
+      // d3.select("#text_idv").transition().duration(firstTime ? 0 : 1000).style('opacity', 0);
+      d3.select('#sideText_1').transition().duration(500).style('opacity', 1);
+      d3.select('#sideTextTitle').transition().duration(500).style('opacity', 0);
+      d3.select('#sideText').transition().duration(500).style('opacity', 1);
       d3.select('#yearSlider').transition().duration(500).style('opacity', 1);
       d3.select('.sliderticks').transition().duration(500).style('opacity', 1);
+      d3.select('#sideText_1').transition().duration(500).style('opacity', 1);
       createBubbleChart();
     }
 
@@ -147,6 +157,7 @@
       d3.select('.sliderticks').transition().duration(500).style('opacity', 1);
       d3.select('#sideTextTitle').transition().duration(500).style('opacity', 1);
       d3.select('#sideText').transition().duration(500).style('opacity', 1);
+      d3.select('#sideText_1').transition().duration(500).style('opacity', 1);
       d3.select("#my_dataviz").selectAll("svg").remove();
 
       country_button.style("border-color", "whitesmoke");
@@ -168,15 +179,17 @@
 
 
     function showCountry(country) {
+
+      d3.select("#my_dataviz").selectAll("svg").remove();
       d3.select("#par_buttons").transition().duration(1000).style('opacity', 0);
-      d3.select("#chooseCountry").transition().duration(1000).style('opacity', 1);
 
       d3.select('#yearSlider').transition().duration(500).style('opacity', 0);
       d3.select('.sliderticks').transition().duration(500).style('opacity', 0);
       d3.select('#sideTextTitle').transition().duration(500).style('opacity', 0);
-      d3.select('#sideText').transition().duration(500).style('opacity', 0);
-      d3.select("#my_dataviz").selectAll("svg").remove();
+      d3.select('#sideText').transition().duration(500).style('opacity', 1);
 
+      d3.select("#chooseCountry").transition().duration(1000).style('opacity', 1);
+      d3.select('#sideText_1').transition().duration(500).style('opacity', 0);
       par_button.style("border-color", "whitesmoke");
       sum_button.style("border-color", "whitesmoke");
       country_button.style("border-color", "dodgerblue");
